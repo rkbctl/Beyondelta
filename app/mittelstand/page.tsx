@@ -28,17 +28,17 @@ export default function MittelstandPage() {
       <section className="mx-auto w-full max-w-5xl px-6 py-20">
         <h2 className="text-center font-serif text-3xl">[Process — three phases]</h2>
         <div className="mt-10 grid gap-6 sm:grid-cols-3">
-          <div className="rounded-2xl border border-gold/20 bg-navy-raised p-8">
+          <div className="rounded-2xl border border-gold/20 bg-navy p-8">
             <span className="text-xs uppercase tracking-widest text-gold">01</span>
             <h3 className="mt-2 font-serif text-2xl">Audit</h3>
             <p className="mt-3 text-sm text-offwhite/60">[Description]</p>
           </div>
-          <div className="rounded-2xl border border-gold/20 bg-navy-raised p-8">
+          <div className="rounded-2xl border border-gold/20 bg-navy p-8">
             <span className="text-xs uppercase tracking-widest text-gold">02</span>
             <h3 className="mt-2 font-serif text-2xl">Design &amp; Implementation</h3>
             <p className="mt-3 text-sm text-offwhite/60">[Description]</p>
           </div>
-          <div className="rounded-2xl border border-gold/20 bg-navy-raised p-8">
+          <div className="rounded-2xl border border-gold/20 bg-navy p-8">
             <span className="text-xs uppercase tracking-widest text-gold">03</span>
             <h3 className="mt-2 font-serif text-2xl">Handover</h3>
             <p className="mt-3 text-sm text-offwhite/60">
@@ -65,7 +65,7 @@ export default function MittelstandPage() {
         <h2 className="text-center font-serif text-3xl">[Relevant case studies]</h2>
         <div className="mt-10 grid gap-6 sm:grid-cols-2">
           {[1, 2].map((i) => (
-            <div key={i} className="rounded-2xl border border-gold/15 bg-navy-raised p-6">
+            <div key={i} className="rounded-2xl border border-gold/15 bg-navy p-6">
               <h3 className="font-serif text-lg">[Case study {i}]</h3>
               <p className="mt-2 text-sm text-offwhite/60">[Summary]</p>
             </div>

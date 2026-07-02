@@ -20,7 +20,7 @@ export function DeltaDivider({ flip = false, className = "" }: DeltaDividerProps
         preserveAspectRatio="none"
         className={`h-full w-full ${flip ? "-scale-y-100" : ""}`}
       >
-        <polygon points="0,0 1200,0 1200,40 600,120 0,40" fill="var(--color-navy)" />
+        <polygon points="0,0 1200,0 1200,40 600,120 0,40" fill="var(--background)" />
         <polygon
           points="0,0 1200,0 1200,22 600,86 0,22"
           fill="none"

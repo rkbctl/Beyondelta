@@ -1,15 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  /* Brand palette — see project brief. Gold is the only functional accent;
-     black is structural-only and must never sit on the navy base. */
-  --color-navy: #0d1b2a;
-  --color-navy-raised: #13253a; /* one step lighter, for cards/panels on navy */
+  /* Brand palette. Black is now the dominant page base (was navy — navy
+     fill on a navy base made the logo mark unreadable). Navy is one step
+     up as the "raised" surface tone for cards/panels; navy-raised is a
+     further step for hover states. Gold is the only functional accent. */
+  --color-black: #000000;
+  --color-navy: #0d1b2a; /* raised surface, one step above black */
+  --color-navy-raised: #13253a; /* further-raised / hover tone */
   --color-offwhite: #f5f5f0;
   --color-gold: #ecca4f;
-  --color-black: #000000;
 
-  --background: var(--color-navy);
+  --background: var(--color-black);
   --foreground: var(--color-offwhite);
 }
 

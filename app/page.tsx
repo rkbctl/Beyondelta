@@ -26,7 +26,7 @@ export default function Home() {
         <div className="mt-12 grid w-full gap-4 sm:grid-cols-2">
           <Link
             href="/startups"
-            className="group rounded-2xl border border-gold/20 bg-navy-raised p-8 text-left transition-colors hover:border-gold/50"
+            className="group rounded-2xl border border-gold/20 bg-navy p-8 text-left transition-colors hover:border-gold/50"
           >
             <span className="text-xs uppercase tracking-widest text-gold">For Startups</span>
             <h2 className="mt-3 font-serif text-2xl">PMF validation &amp; GTM strategy</h2>
@@ -34,7 +34,7 @@ export default function Home() {
           </Link>
           <Link
             href="/mittelstand"
-            className="group rounded-2xl border border-gold/20 bg-navy-raised p-8 text-left transition-colors hover:border-gold/50"
+            className="group rounded-2xl border border-gold/20 bg-navy p-8 text-left transition-colors hover:border-gold/50"
           >
             <span className="text-xs uppercase tracking-widest text-gold">For Mittelstand</span>
             <h2 className="mt-3 font-serif text-2xl">Process automation</h2>
@@ -63,7 +63,7 @@ export default function Home() {
         <h2 className="text-center font-serif text-3xl">[Selected work]</h2>
         <div className="mt-10 grid gap-6 sm:grid-cols-3">
           {[1, 2, 3].map((i) => (
-            <div key={i} className="rounded-2xl border border-gold/15 bg-navy-raised p-6">
+            <div key={i} className="rounded-2xl border border-gold/15 bg-navy p-6">
               <p className="text-xs uppercase tracking-widest text-gold">[Client / category]</p>
               <h3 className="mt-2 font-serif text-lg">[Case study headline {i}]</h3>
               <p className="mt-2 text-sm text-offwhite/60">[1–2 line summary]</p>

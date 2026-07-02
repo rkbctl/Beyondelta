@@ -34,7 +34,7 @@ export default function RootLayout({
       lang="en"
       className={`${fraunces.variable} ${manrope.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col bg-navy text-offwhite">
+      <body className="flex min-h-full flex-col bg-black text-offwhite">
         <Nav />
         <main className="flex flex-1 flex-col">{children}</main>
         <Footer />
