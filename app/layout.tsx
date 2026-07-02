@@ -20,6 +20,7 @@ export const metadata: Metadata = {
     "Execution-led PMF validation and go-to-market strategy for early-stage B2B startups, and process automation for Mittelstand — Karlsruhe, Germany.",
   icons: {
     icon: "/brand/logo.svg",
+    apple: "/brand/logo.png",
   },
 };
 
