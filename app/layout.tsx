@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   title: "Beyondelta — PMF & GTM execution for early-stage B2B startups",
   description:
     "Execution-led PMF validation and go-to-market strategy for early-stage B2B startups, and process automation for Mittelstand — Karlsruhe, Germany.",
+  icons: {
+    icon: "/brand/logo.svg",
+  },
 };
 
 export default function RootLayout({
