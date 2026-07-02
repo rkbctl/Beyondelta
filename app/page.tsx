@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { DeltaDivider } from "@/components/DeltaDivider";
 import { Logo } from "@/components/Logo";
+import { IntroCascade } from "@/components/IntroCascade";
 
 /**
  * SKELETON — structure only, final copy comes page-by-page per the brief's
@@ -9,6 +10,8 @@ import { Logo } from "@/components/Logo";
 export default function Home() {
   return (
     <>
+      <IntroCascade />
+
       {/* Hero — neutral entry point for non-campaign traffic (referral, search, direct) */}
       <section className="mx-auto flex w-full max-w-4xl flex-1 flex-col items-center px-6 py-28 text-center">
         <Logo size={64} className="mb-8" />

@@ -34,3 +34,47 @@ body {
 h1, h2, h3, .font-serif {
   font-family: var(--font-serif), Georgia, serif;
 }
+
+/* Intro cascade — logo materializes layer by layer, then dives through its
+   own convergence point into the site. See components/IntroCascade.tsx. */
+@keyframes cascade-layer {
+  from { opacity: 0; }
+  to { opacity: var(--op); }
+}
+.intro-layer {
+  opacity: 0;
+  animation-name: cascade-layer;
+  animation-duration: 380ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  animation-fill-mode: both;
+}
+
+@keyframes intro-zoom {
+  from { transform: scale(1); opacity: 1; }
+  to { transform: scale(46); opacity: 0; }
+}
+.intro-zoom {
+  animation-name: intro-zoom;
+  animation-duration: 650ms;
+  animation-timing-function: cubic-bezier(0.55, 0, 1, 0.45);
+  animation-fill-mode: both;
+}
+
+@keyframes intro-flash {
+  0% { opacity: 0; }
+  55% { opacity: 1; }
+  100% { opacity: 0; }
+}
+.intro-flash {
+  animation-name: intro-flash;
+  animation-duration: 350ms;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-layer, .intro-zoom, .intro-flash {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+}
