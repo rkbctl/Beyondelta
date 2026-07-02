@@ -6,7 +6,15 @@ const RING_CX = 170;
 const RING_CY = 196;
 const RING_CX_PCT = (RING_CX / 340) * 100;
 const RING_CY_PCT = (RING_CY / 320) * 100;
-const LAYER_STAGGER_MS = 90;
+
+const LAYER_STAGGER_MS = 130;
+const LAYER_DURATION_MS = 500;
+const CASCADE_TOTAL_MS = 7 * LAYER_STAGGER_MS + LAYER_DURATION_MS; // 1410
+
+const ZOOM_DURATION_MS = 900;
+const FLASH_DELAY_MS = 550;
+const FLASH_DURATION_MS = 400;
+const ZOOM_TOTAL_MS = Math.max(ZOOM_DURATION_MS, FLASH_DELAY_MS + FLASH_DURATION_MS) + 100;
 
 // Outer -> inner: largest/most-blurred/lowest-opacity to smallest/sharpest.
 // Geometry and blur radii copied from public/brand/logo.svg — same mark,
@@ -23,43 +31,72 @@ const LAYERS = [
 ];
 
 const SESSION_KEY = "beyondelta-intro-seen";
-const TOTAL_DURATION_MS = 2200;
+
+type Phase = "cascading" | "waiting" | "zooming" | "done";
 
 /**
- * One-time entry sequence: the 8 logo layers cascade in from haze, the
- * mark dives into its own convergence ring, a flash clears, and the
- * actual site (already mounted underneath) is revealed. Plays once per
+ * Entry sequence: the 8 logo layers cascade in slowly from haze and hold,
+ * fully formed, until the visitor moves the mouse, scrolls, touches, or
+ * presses a key — then it dives through its own convergence ring into a
+ * flash reveal of the site (already mounted underneath). Plays once per
  * browser session, skips instantly on reduced-motion or repeat visits.
  */
 export function IntroCascade() {
-  const [ready, setReady] = useState(false);
-  const [play, setPlay] = useState(false);
+  const [phase, setPhase] = useState<Phase | null>(null);
 
+  // Determine whether to play at all, and run the auto cascade-in.
   useEffect(() => {
     const seen = sessionStorage.getItem(SESSION_KEY);
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (seen || reduced) {
-      setReady(true);
+      setPhase("done");
       return;
     }
-    setPlay(true);
-    setReady(true);
-    sessionStorage.setItem(SESSION_KEY, "1");
-    const timer = setTimeout(() => setPlay(false), TOTAL_DURATION_MS);
+    setPhase("cascading");
+    const timer = setTimeout(() => setPhase("waiting"), CASCADE_TOTAL_MS);
     return () => clearTimeout(timer);
   }, []);
 
-  const skip = useCallback(() => setPlay(false), []);
+  // Once settled, any interaction triggers the dive-through.
+  useEffect(() => {
+    if (phase !== "waiting") return;
+    const trigger = () => setPhase("zooming");
+    const opts = { once: true } as const;
+    window.addEventListener("mousemove", trigger, opts);
+    window.addEventListener("wheel", trigger, opts);
+    window.addEventListener("touchstart", trigger, opts);
+    window.addEventListener("touchmove", trigger, opts);
+    window.addEventListener("keydown", trigger, opts);
+    return () => {
+      window.removeEventListener("mousemove", trigger);
+      window.removeEventListener("wheel", trigger);
+      window.removeEventListener("touchstart", trigger);
+      window.removeEventListener("touchmove", trigger);
+      window.removeEventListener("keydown", trigger);
+    };
+  }, [phase]);
 
-  if (!ready || !play) return null;
+  // Zoom + flash, then unmount and remember for this session.
+  useEffect(() => {
+    if (phase !== "zooming") return;
+    sessionStorage.setItem(SESSION_KEY, "1");
+    const timer = setTimeout(() => setPhase("done"), ZOOM_TOTAL_MS);
+    return () => clearTimeout(timer);
+  }, [phase]);
+
+  const skip = useCallback(() => {
+    sessionStorage.setItem(SESSION_KEY, "1");
+    setPhase("done");
+  }, []);
+
+  if (!phase || phase === "done") return null;
+
+  const zooming = phase === "zooming";
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black"
-      onClick={skip}
-    >
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black" onClick={skip}>
       <div
-        className="intro-zoom relative w-[min(60vw,360px)]"
+        className={`relative w-[min(60vw,360px)] ${zooming ? "intro-zoom" : ""}`}
         style={{ transformOrigin: `${RING_CX_PCT}% ${RING_CY_PCT}%` }}
       >
         <svg viewBox="0 0 340 320" className="h-auto w-full" aria-hidden>
@@ -85,6 +122,7 @@ export function IntroCascade() {
                 style={
                   {
                     "--op": layer.opacity,
+                    animationDuration: `${LAYER_DURATION_MS}ms`,
                     animationDelay: `${i * LAYER_STAGGER_MS}ms`,
                   } as React.CSSProperties
                 }
@@ -106,10 +144,18 @@ export function IntroCascade() {
         </svg>
       </div>
 
-      <div
-        className="intro-flash pointer-events-none absolute inset-0 bg-offwhite"
-        style={{ animationDelay: "1710ms" }}
-      />
+      {phase === "waiting" && (
+        <p className="intro-hint absolute bottom-[38%] left-1/2 -translate-x-1/2 text-xs uppercase tracking-[0.2em] text-offwhite/40">
+          Move to continue
+        </p>
+      )}
+
+      {zooming && (
+        <div
+          className="intro-flash pointer-events-none absolute inset-0 bg-offwhite"
+          style={{ animationDelay: `${FLASH_DELAY_MS}ms`, animationDuration: `${FLASH_DURATION_MS}ms` }}
+        />
+      )}
 
       <button
         type="button"
