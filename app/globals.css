@@ -44,7 +44,7 @@ h1, h2, h3, .font-serif {
 .intro-layer {
   opacity: 0;
   animation-name: cascade-layer;
-  animation-duration: 500ms;
+  animation-duration: 600ms;
   animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   animation-fill-mode: both;
 }
@@ -55,7 +55,7 @@ h1, h2, h3, .font-serif {
 }
 .intro-zoom {
   animation-name: intro-zoom;
-  animation-duration: 900ms;
+  animation-duration: 600ms;
   animation-timing-function: cubic-bezier(0.55, 0, 1, 0.45);
   animation-fill-mode: both;
 }
@@ -67,7 +67,7 @@ h1, h2, h3, .font-serif {
 }
 .intro-flash {
   animation-name: intro-flash;
-  animation-duration: 400ms;
+  animation-duration: 220ms;
   animation-timing-function: ease-out;
   animation-fill-mode: both;
 }

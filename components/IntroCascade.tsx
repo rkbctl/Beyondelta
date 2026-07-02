@@ -7,13 +7,13 @@ const RING_CY = 196;
 const RING_CX_PCT = (RING_CX / 340) * 100;
 const RING_CY_PCT = (RING_CY / 320) * 100;
 
-const LAYER_STAGGER_MS = 130;
-const LAYER_DURATION_MS = 500;
-const CASCADE_TOTAL_MS = 7 * LAYER_STAGGER_MS + LAYER_DURATION_MS; // 1410
+const LAYER_STAGGER_MS = 200;
+const LAYER_DURATION_MS = 600;
+const CASCADE_TOTAL_MS = 7 * LAYER_STAGGER_MS + LAYER_DURATION_MS; // ~2000ms
 
-const ZOOM_DURATION_MS = 900;
-const FLASH_DELAY_MS = 550;
-const FLASH_DURATION_MS = 400;
+const ZOOM_DURATION_MS = 600;
+const FLASH_DELAY_MS = 380;
+const FLASH_DURATION_MS = 220;
 const ZOOM_TOTAL_MS = Math.max(ZOOM_DURATION_MS, FLASH_DELAY_MS + FLASH_DURATION_MS) + 100;
 
 // Outer -> inner: largest/most-blurred/lowest-opacity to smallest/sharpest.
@@ -96,7 +96,7 @@ export function IntroCascade() {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black" onClick={skip}>
       <div
-        className={`relative w-[min(60vw,360px)] ${zooming ? "intro-zoom" : ""}`}
+        className={`relative w-[min(70vw,440px)] ${zooming ? "intro-zoom" : ""}`}
         style={{ transformOrigin: `${RING_CX_PCT}% ${RING_CY_PCT}%` }}
       >
         <svg viewBox="0 0 340 320" className="h-auto w-full" aria-hidden>
