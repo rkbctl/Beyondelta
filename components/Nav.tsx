@@ -12,9 +12,9 @@ export function Nav() {
   return (
     <header className="border-b border-gold/15">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
-        <Link href="/" className="flex items-center gap-3">
-          <span className="font-serif text-lg tracking-tight text-offwhite">Beyondelta</span>
-          <Logo size={32} />
+        <Link href="/" className="flex items-center gap-0.5">
+          <span className="font-serif text-lg tracking-tight text-offwhite">Beyond</span>
+          <Logo size={38} className="-mb-0.5" />
         </Link>
         <ul className="hidden items-center gap-8 text-sm text-offwhite/80 sm:flex">
           {LINKS.map((link) => (
