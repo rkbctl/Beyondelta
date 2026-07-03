@@ -1,19 +1,14 @@
-import { LegalNotice } from "@/components/LegalNotice";
-
 /**
  * Content sourced from the Impressum-Generator (WebsiteWissen.com), legal
  * text by Kanzlei Hasselbach — see public/legal/Impressum.html for the
- * original generator output this was transcribed from. VAT-ID and EU-ODR
- * sections were in the original placeholder scaffold but aren't covered by
- * this generator's output — kept as flagged gaps rather than dropped.
+ * original generator output this was transcribed from.
  */
 export default function ImpressumPage() {
   return (
     <section className="mx-auto w-full max-w-2xl px-6 py-24">
       <h1 className="font-serif text-4xl">Impressum</h1>
-      <LegalNotice />
 
-      <div className="space-y-8 text-offwhite/80">
+      <div className="mt-8 space-y-8 text-offwhite/80">
         <div>
           <h2 className="font-serif text-xl text-offwhite">Angaben gem&auml;&szlig; &sect; 5 DDG</h2>
           <p className="mt-2">

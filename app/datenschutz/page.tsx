@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { LegalNotice } from "@/components/LegalNotice";
 
 /**
  * Full, faithful transcription of the generator output at
@@ -14,9 +13,8 @@ export default function DatenschutzPage() {
   return (
     <section className="mx-auto w-full max-w-2xl px-6 py-24">
       <h1 className="font-serif text-4xl">Datenschutzerkl&auml;rung</h1>
-      <LegalNotice />
 
-      <div className="space-y-8 text-offwhite/80">
+      <div className="mt-8 space-y-8 text-offwhite/80">
         <div>
           <h2 className="font-serif text-xl text-offwhite">Pr&auml;ambel</h2>
           <p className="mt-2">
