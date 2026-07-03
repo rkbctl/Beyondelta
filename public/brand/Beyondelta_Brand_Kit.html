@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beyondelta — Brand Kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0D1B2A;
+    --navy-soft:#16283B;
+    --gold:#ECCA4F;
+    --field:#F5F5F0;
+    --field-dim:#EAE9E2;
+    --slate:#5F6B76;
+    --slate-light:#9AA5AD;
+    --line: rgba(13,27,42,0.12);
+    --line-dark: rgba(245,245,240,0.14);
+    --serif: 'Fraunces', serif;
+    --sans: 'Space Grotesk', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--field);
+    color:var(--navy);
+    font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  section{ position:relative; }
+
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 40px; }
+  @media (max-width:640px){ .wrap{ padding:0 22px; } }
+
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:2.5px;
+    text-transform:uppercase;
+    color:var(--gold);
+    display:block;
+    margin-bottom:18px;
+  }
+  .eyebrow.on-light{ color:var(--slate); }
+
+  h1,h2,h3{ font-family:var(--serif); font-weight:500; letter-spacing:-0.01em; }
+
+  /* ===================== HERO ===================== */
+  .hero{
+    background:var(--navy);
+    color:var(--field);
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:80px 24px 100px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background:
+      radial-gradient(ellipse at 50% 30%, rgba(236,202,79,0.06), transparent 60%);
+    pointer-events:none;
+  }
+  .hero-mark{ width:220px; height:auto; margin-bottom:8px; }
+  .hero-word{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:clamp(42px,7vw,84px);
+    letter-spacing:-0.02em;
+    margin-top:6px;
+  }
+  .hero-tag{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-top:20px;
+  }
+  .hero-sub{
+    max-width:520px;
+    margin:34px auto 0;
+    font-size:16px;
+    line-height:1.7;
+    color:var(--slate-light);
+  }
+  .scroll-cue{
+    position:absolute; bottom:34px; left:50%; transform:translateX(-50%);
+    font-family:var(--mono); font-size:10px; letter-spacing:2px; color:var(--slate-light);
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+    opacity:0.7;
+  }
+  .scroll-cue .line{ width:1px; height:34px; background:linear-gradient(var(--gold), transparent); }
+
+  /* diagonal divider — the delta cascade motif carried into layout */
+  .divider{
+    height:64px;
+    background:var(--field);
+    clip-path: polygon(0 0, 100% 100%, 100% 0);
+  }
+  .divider.rev{ clip-path: polygon(0 100%, 100% 0, 0 0); background:var(--navy); }
+
+  /* ===================== SECTION SHELL ===================== */
+  .sect{ padding:96px 0; }
+  .sect.dark{ background:var(--navy); color:var(--field); }
+  .sect h2{ font-size:clamp(28px,4vw,40px); margin-bottom:14px; }
+  .sect .lede{ max-width:560px; color:var(--slate); line-height:1.7; font-size:15px; margin-bottom:56px; }
+  .sect.dark .lede{ color:var(--slate-light); }
+
+  /* ===================== RATIONALE ===================== */
+  .rationale-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:64px; align-items:center; }
+  @media (max-width:800px){ .rationale-grid{ grid-template-columns:1fr; gap:40px; } }
+  .rationale-grid p{ font-size:15px; line-height:1.85; color:var(--slate-light); margin-bottom:18px; }
+  .rationale-grid strong{ color:var(--field); font-weight:600; }
+  .rationale-mark{ display:flex; justify-content:center; }
+  .rationale-mark svg{ width:100%; max-width:280px; }
+
+  /* ===================== LOGO SYSTEM ===================== */
+  .logo-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:20px; }
+  @media (max-width:760px){ .logo-grid{ grid-template-columns:1fr; } }
+  .logo-card{
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:36px 24px 22px;
+    display:flex; flex-direction:column; align-items:center;
+    background:#fff;
+  }
+  .logo-card.on-navy{ background:var(--navy); border-color:var(--line-dark); }
+  .logo-card.on-black{ background:#000; border-color:#222; }
+  .logo-card svg{ width:120px; height:auto; margin-bottom:20px; }
+  .logo-card .label{ font-family:var(--mono); font-size:11px; letter-spacing:1.2px; text-transform:uppercase; color:var(--slate); }
+  .logo-card.on-navy .label, .logo-card.on-black .label{ color:var(--slate-light); }
+
+  .spec-row{
+    display:flex; gap:40px; margin-top:64px; flex-wrap:wrap;
+  }
+  .spec-block{ flex:1; min-width:220px; }
+  .spec-block h3{ font-size:16px; margin-bottom:10px; font-weight:500; }
+  .spec-block p{ font-size:13.5px; line-height:1.7; color:var(--slate); }
+
+  .clearspace-demo{
+    border:1px dashed var(--line);
+    border-radius:12px;
+    padding:44px;
+    display:flex; justify-content:center; align-items:center;
+    position:relative;
+    margin-top:18px;
+  }
+  .clearspace-demo svg{ width:90px; }
+  .clearspace-demo::before{
+    content:"clear space = ½ mark height, on every side";
+    position:absolute; bottom:10px; left:50%; transform:translateX(-50%);
+    font-family:var(--mono); font-size:10px; color:var(--slate-light); letter-spacing:0.5px;
+  }
+
+  .donts{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:18px; }
+  @media (max-width:760px){ .donts{ grid-template-columns:repeat(2,1fr); } }
+  .dont-card{
+    border:1px solid var(--line); border-radius:10px; padding:20px 14px;
+    text-align:center; font-family:var(--mono); font-size:11px; color:var(--slate);
+    position:relative;
+  }
+  .dont-card svg{ width:56px; margin-bottom:14px; opacity:0.7; }
+
+  /* ===================== COLOR ===================== */
+  .swatch-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
+  @media (max-width:760px){ .swatch-grid{ grid-template-columns:repeat(2,1fr); } }
+  .swatch{
+    border-radius:14px; overflow:hidden; border:1px solid var(--line);
+  }
+  .swatch-fill{ height:130px; }
+  .swatch-info{ padding:16px 18px; background:#fff; }
+  .swatch-info .name{ font-family:var(--serif); font-size:17px; font-weight:500; margin-bottom:6px; }
+  .swatch-info .hex{ font-family:var(--mono); font-size:12px; color:var(--slate); letter-spacing:0.5px; }
+  .swatch-info .use{ font-size:12px; color:var(--slate); margin-top:8px; line-height:1.5; }
+
+  /* ===================== TYPE ===================== */
+  .type-role{ margin-bottom:70px; }
+  .type-role:last-child{ margin-bottom:0; }
+  .type-role .role-label{ font-family:var(--mono); font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:6px; }
+  .type-role .role-name{ font-size:14px; color:var(--slate-light); margin-bottom:22px; }
+  .specimen-serif{ font-family:var(--serif); font-weight:500; font-size:clamp(34px,5vw,58px); letter-spacing:-0.01em; line-height:1.08; }
+  .specimen-serif.italic{ font-style:italic; font-weight:400; }
+  .specimen-sans{ font-family:var(--sans); font-weight:600; font-size:clamp(28px,4vw,44px); letter-spacing:-0.01em; line-height:1.1; }
+  .specimen-mono{ font-family:var(--mono); font-size:15px; letter-spacing:0.3px; color:var(--slate-light); }
+  .weight-row{ display:flex; gap:28px; flex-wrap:wrap; margin-top:18px; font-family:var(--sans); }
+  .weight-row span{ font-size:13px; color:var(--slate-light); }
+  .scale-table{ margin-top:26px; font-family:var(--mono); font-size:12px; color:var(--slate-light); }
+  .scale-table div{ display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--line-dark); max-width:420px; }
+
+  /* ===================== GRAPHIC LANGUAGE ===================== */
+  .motif-row{ display:grid; grid-template-columns:1.1fr 0.9fr; gap:60px; align-items:center; }
+  @media (max-width:800px){ .motif-row{ grid-template-columns:1fr; gap:36px; } }
+  .motif-row p{ font-size:15px; line-height:1.8; color:var(--slate); margin-bottom:16px; }
+  .cascade-visual{ display:flex; justify-content:center; }
+  .cascade-visual svg{ width:100%; max-width:300px; }
+
+  /* ===================== APPLICATIONS ===================== */
+  .app-grid{ display:grid; grid-template-columns:1.3fr 1fr; gap:22px; }
+  @media (max-width:800px){ .app-grid{ grid-template-columns:1fr; } }
+  .letterhead{
+    background:#fff; border:1px solid var(--line); border-radius:10px;
+    padding:34px 32px; aspect-ratio:1.414/1;
+  }
+  .lh-top{ display:flex; justify-content:space-between; align-items:flex-start; }
+  .lh-mark{ display:flex; align-items:center; gap:10px; }
+  .lh-mark svg{ width:26px; }
+  .lh-mark .name{ font-family:var(--serif); font-weight:500; font-size:16px; }
+  .lh-contact{ text-align:right; font-family:var(--mono); font-size:9px; color:var(--slate); line-height:1.8; }
+  .lh-body{ margin-top:70px; }
+  .lh-body .line{ height:6px; background:var(--field-dim); border-radius:3px; margin-bottom:10px; width:100%; }
+  .lh-body .line:nth-child(2){ width:88%; }
+  .lh-body .line:nth-child(3){ width:70%; }
+
+  .bizcard-stack{ display:flex; flex-direction:column; gap:16px; }
+  .bizcard{
+    background:var(--navy); border-radius:10px; padding:22px 24px;
+    aspect-ratio:1.75/1; display:flex; flex-direction:column; justify-content:space-between;
+    color:var(--field);
+  }
+  .bizcard .top{ display:flex; align-items:center; gap:8px; }
+  .bizcard .top svg{ width:18px; }
+  .bizcard .top .n{ font-family:var(--serif); font-size:14px; font-weight:500; }
+  .bizcard .who{ font-family:var(--mono); font-size:9px; color:var(--slate-light); letter-spacing:0.5px; }
+
+  /* ===================== VOICE ===================== */
+  .voice-list{ display:grid; grid-template-columns:repeat(2,1fr); gap:34px; }
+  @media (max-width:760px){ .voice-list{ grid-template-columns:1fr; } }
+  .voice-item .num{ font-family:var(--mono); font-size:11px; color:var(--gold); margin-bottom:10px; display:block; }
+  .voice-item h3{ font-size:19px; margin-bottom:10px; font-weight:500; }
+  .voice-item p{ font-size:14px; line-height:1.7; color:var(--slate-light); }
+
+  footer{
+    background:var(--navy); color:var(--slate-light); text-align:center;
+    padding:50px 24px 40px; font-family:var(--mono); font-size:11px; letter-spacing:1px;
+  }
+  footer .fmark{ width:30px; margin:0 auto 18px; display:block; }
+
+  @media (prefers-reduced-motion: reduce){
+    * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <svg class="hero-mark" id="heroMark" viewBox="0 0 340 320" role="img" aria-label="Beyondelta mark">
+    <defs>
+      <filter id="h0" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="16.0"/></filter>
+      <filter id="h1" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="14.0"/></filter>
+      <filter id="h2" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="12.0"/></filter>
+      <filter id="h3" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="10.0"/></filter>
+      <filter id="h4" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="8.0"/></filter>
+      <filter id="h5" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="6.0"/></filter>
+      <filter id="h6" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="4.0"/></filter>
+      <filter id="h7" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="2.0"/></filter>
+      <mask id="hRing" maskUnits="userSpaceOnUse" x="0" y="0" width="340" height="320">
+        <rect x="0" y="0" width="340" height="320" fill="#fff"/>
+        <circle cx="170" cy="196" r="14" fill="#000"/>
+      </mask>
+    </defs>
+    <g mask="url(#hRing)">
+      <path class="cl c0" d="M 170.0 50.0 L 296.0 270.0 L 44.0 270.0 Z" fill="#F5F5F0" opacity="0" filter="url(#h0)"/>
+      <path class="cl c1" d="M 170.0 85.8 L 265.1 251.9 L 74.9 251.9 Z" fill="#F5F5F0" opacity="0" filter="url(#h1)"/>
+      <path class="cl c2" d="M 170.0 112.7 L 241.8 238.2 L 98.2 238.2 Z" fill="#F5F5F0" opacity="0" filter="url(#h2)"/>
+      <path class="cl c3" d="M 170.0 133.1 L 224.3 227.9 L 115.7 227.9 Z" fill="#F5F5F0" opacity="0" filter="url(#h3)"/>
+      <path class="cl c4" d="M 170.0 148.5 L 211.0 220.1 L 129.0 220.1 Z" fill="#F5F5F0" opacity="0" filter="url(#h4)"/>
+      <path class="cl c5" d="M 170.0 160.2 L 200.9 214.2 L 139.1 214.2 Z" fill="#F5F5F0" opacity="0" filter="url(#h5)"/>
+      <path class="cl c6" d="M 170.0 168.9 L 193.4 209.7 L 146.6 209.7 Z" fill="#F5F5F0" opacity="0" filter="url(#h6)"/>
+      <path class="cl c7" d="M 170.0 175.6 L 187.6 206.4 L 152.4 206.4 Z" fill="#F5F5F0" opacity="0" filter="url(#h7)"/>
+    </g>
+    <path class="ring-a" d="M 182.69,190.08 A 14,14 0 1,1 179.00,185.28" fill="none" stroke="#F5F5F0" stroke-width="2.2" opacity="0"/>
+    <path class="ring-g" d="M 179.00,185.28 A 14,14 0 0,1 182.69,190.08" fill="none" stroke="#ECCA4F" stroke-width="2.2" opacity="0"/>
+  </svg>
+  <div class="hero-word">Beyondelta</div>
+  <div class="hero-tag">Beyond the point of change</div>
+  <p class="hero-sub">A brand kit for a consultancy built on the same discipline it sells: precision, restraint, and the willingness to look past the obvious inflection point toward what's actually next.</p>
+  <div class="scroll-cue"><span>SCROLL</span><span class="line"></span></div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============ RATIONALE ============ -->
+<section class="sect dark">
+  <div class="wrap">
+    <div class="rationale-grid">
+      <div>
+        <span class="eyebrow">Rationale</span>
+        <h2 style="color:var(--field); margin-bottom:24px;">Why a dissolving triangle</h2>
+        <p>The name plays on <strong>Δ</strong> — delta, the mathematical symbol for change. <strong>Beyond</strong>delta is the claim that measuring change isn't the job; operating past it is.</p>
+        <p>The mark is built from eight nested triangles, each one softer and less resolved than the last, converging on a single small point. It reads the way the work actually feels for a founder: the outer edge of a problem is hazy and overwhelming, and clarity only exists in one small, hard-won place at the center.</p>
+        <p>The short gold arc on that center point is a deliberate scar — a visible thread back to <strong>Enersoul</strong>, the founder's first company. Continuity, not erasure.</p>
+      </div>
+      <div class="rationale-mark">
+        <svg viewBox="0 0 340 320" role="img" aria-label="Beyondelta mark, static">
+          <defs>
+            <filter id="r0" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="16.0"/></filter>
+            <filter id="r1" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="14.0"/></filter>
+            <filter id="r2" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="12.0"/></filter>
+            <filter id="r3" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="10.0"/></filter>
+            <filter id="r4" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="8.0"/></filter>
+            <filter id="r5" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="6.0"/></filter>
+            <filter id="r6" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="4.0"/></filter>
+            <filter id="r7" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="2.0"/></filter>
+            <mask id="rRing" maskUnits="userSpaceOnUse" x="0" y="0" width="340" height="320">
+              <rect x="0" y="0" width="340" height="320" fill="#fff"/>
+              <circle cx="170" cy="196" r="14" fill="#000"/>
+            </mask>
+          </defs>
+          <g mask="url(#rRing)">
+            <path d="M 170.0 50.0 L 296.0 270.0 L 44.0 270.0 Z" fill="#F5F5F0" opacity="0.45" filter="url(#r0)"/>
+            <path d="M 170.0 85.8 L 265.1 251.9 L 74.9 251.9 Z" fill="#F5F5F0" opacity="0.52" filter="url(#r1)"/>
+            <path d="M 170.0 112.7 L 241.8 238.2 L 98.2 238.2 Z" fill="#F5F5F0" opacity="0.59" filter="url(#r2)"/>
+            <path d="M 170.0 133.1 L 224.3 227.9 L 115.7 227.9 Z" fill="#F5F5F0" opacity="0.66" filter="url(#r3)"/>
+            <path d="M 170.0 148.5 L 211.0 220.1 L 129.0 220.1 Z" fill="#F5F5F0" opacity="0.74" filter="url(#r4)"/>
+            <path d="M 170.0 160.2 L 200.9 214.2 L 139.1 214.2 Z" fill="#F5F5F0" opacity="0.81" filter="url(#r5)"/>
+            <path d="M 170.0 168.9 L 193.4 209.7 L 146.6 209.7 Z" fill="#F5F5F0" opacity="0.88" filter="url(#r6)"/>
+            <path d="M 170.0 175.6 L 187.6 206.4 L 152.4 206.4 Z" fill="#F5F5F0" opacity="0.95" filter="url(#r7)"/>
+          </g>
+          <path d="M 182.69,190.08 A 14,14 0 1,1 179.00,185.28" fill="none" stroke="#F5F5F0" stroke-width="2.2"/>
+          <path d="M 179.00,185.28 A 14,14 0 0,1 182.69,190.08" fill="none" stroke="#ECCA4F" stroke-width="2.2"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider rev"></div>
+
+<!-- ============ LOGO SYSTEM ============ -->
+<section class="sect" id="logo">
+  <div class="wrap">
+    <span class="eyebrow on-light">01 — Logo</span>
+    <h2>The mark, in its three states</h2>
+    <p class="lede">One construction, three renderings. Never redraw it, never re-blur it by hand — export from the master file for every use.</p>
+
+    <div class="logo-grid">
+      <div class="logo-card">
+        <svg viewBox="0 0 340 320"><defs><filter id="lc0" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="16"/></filter><filter id="lc1" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="14"/></filter><filter id="lc2" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="12"/></filter><filter id="lc3" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="10"/></filter><filter id="lc4" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="8"/></filter><filter id="lc5" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="6"/></filter><filter id="lc6" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="4"/></filter><filter id="lc7" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="2"/></filter><mask id="mlc" maskUnits="userSpaceOnUse" x="0" y="0" width="340" height="320"><rect width="340" height="320" fill="#fff"/><circle cx="170" cy="196" r="14" fill="#000"/></mask></defs>
+          <g mask="url(#mlc)">
+            <path d="M170,50 296,270 44,270Z" fill="#0D1B2A" opacity="0.45" filter="url(#lc0)"/>
+            <path d="M170,85.8 265.1,251.9 74.9,251.9Z" fill="#0D1B2A" opacity="0.52" filter="url(#lc1)"/>
+            <path d="M170,112.7 241.8,238.2 98.2,238.2Z" fill="#0D1B2A" opacity="0.59" filter="url(#lc2)"/>
+            <path d="M170,133.1 224.3,227.9 115.7,227.9Z" fill="#0D1B2A" opacity="0.66" filter="url(#lc3)"/>
+            <path d="M170,148.5 211,220.1 129,220.1Z" fill="#0D1B2A" opacity="0.74" filter="url(#lc4)"/>
+            <path d="M170,160.2 200.9,214.2 139.1,214.2Z" fill="#0D1B2A" opacity="0.81" filter="url(#lc5)"/>
+            <path d="M170,168.9 193.4,209.7 146.6,209.7Z" fill="#0D1B2A" opacity="0.88" filter="url(#lc6)"/>
+            <path d="M170,175.6 187.6,206.4 152.4,206.4Z" fill="#0D1B2A" opacity="0.95" filter="url(#lc7)"/>
+          </g>
+          <path d="M182.69,190.08A14,14 0 1,1 179,185.28" fill="none" stroke="#0D1B2A" stroke-width="2.2"/>
+          <path d="M179,185.28A14,14 0 0,1 182.69,190.08" fill="none" stroke="#ECCA4F" stroke-width="2.2"/>
+        </svg>
+        <span class="label">Full color · light field</span>
+      </div>
+
+      <div class="logo-card on-navy">
+        <svg viewBox="0 0 340 320"><defs><filter id="ld0" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="16"/></filter><filter id="ld1" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="14"/></filter><filter id="ld2" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="12"/></filter><filter id="ld3" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="10"/></filter><filter id="ld4" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="8"/></filter><filter id="ld5" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="6"/></filter><filter id="ld6" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="4"/></filter><filter id="ld7" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="2"/></filter><mask id="mld" maskUnits="userSpaceOnUse" x="0" y="0" width="340" height="320"><rect width="340" height="320" fill="#fff"/><circle cx="170" cy="196" r="14" fill="#000"/></mask></defs>
+          <g mask="url(#mld)">
+            <path d="M170,50 296,270 44,270Z" fill="#F5F5F0" opacity="0.45" filter="url(#ld0)"/>
+            <path d="M170,85.8 265.1,251.9 74.9,251.9Z" fill="#F5F5F0" opacity="0.52" filter="url(#ld1)"/>
+            <path d="M170,112.7 241.8,238.2 98.2,238.2Z" fill="#F5F5F0" opacity="0.59" filter="url(#ld2)"/>
+            <path d="M170,133.1 224.3,227.9 115.7,227.9Z" fill="#F5F5F0" opacity="0.66" filter="url(#ld3)"/>
+            <path d="M170,148.5 211,220.1 129,220.1Z" fill="#F5F5F0" opacity="0.74" filter="url(#ld4)"/>
+            <path d="M170,160.2 200.9,214.2 139.1,214.2Z" fill="#F5F5F0" opacity="0.81" filter="url(#ld5)"/>
+            <path d="M170,168.9 193.4,209.7 146.6,209.7Z" fill="#F5F5F0" opacity="0.88" filter="url(#ld6)"/>
+            <path d="M170,175.6 187.6,206.4 152.4,206.4Z" fill="#F5F5F0" opacity="0.95" filter="url(#ld7)"/>
+          </g>
+          <path d="M182.69,190.08A14,14 0 1,1 179,185.28" fill="none" stroke="#F5F5F0" stroke-width="2.2"/>
+          <path d="M179,185.28A14,14 0 0,1 182.69,190.08" fill="none" stroke="#ECCA4F" stroke-width="2.2"/>
+        </svg>
+        <span class="label">Full color · dark field</span>
+      </div>
+
+      <div class="logo-card on-black">
+        <svg viewBox="0 0 340 320"><defs><filter id="le0" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="16"/></filter><filter id="le1" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="14"/></filter><filter id="le2" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="12"/></filter><filter id="le3" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="10"/></filter><filter id="le4" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="8"/></filter><filter id="le5" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="6"/></filter><filter id="le6" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="4"/></filter><filter id="le7" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="2"/></filter><mask id="mle" maskUnits="userSpaceOnUse" x="0" y="0" width="340" height="320"><rect width="340" height="320" fill="#fff"/><circle cx="170" cy="196" r="14" fill="#000"/></mask></defs>
+          <g mask="url(#mle)">
+            <path d="M170,50 296,270 44,270Z" fill="#F5F5F0" opacity="0.45" filter="url(#le0)"/>
+            <path d="M170,85.8 265.1,251.9 74.9,251.9Z" fill="#F5F5F0" opacity="0.52" filter="url(#le1)"/>
+            <path d="M170,112.7 241.8,238.2 98.2,238.2Z" fill="#F5F5F0" opacity="0.59" filter="url(#le2)"/>
+            <path d="M170,133.1 224.3,227.9 115.7,227.9Z" fill="#F5F5F0" opacity="0.66" filter="url(#le3)"/>
+            <path d="M170,148.5 211,220.1 129,220.1Z" fill="#F5F5F0" opacity="0.74" filter="url(#le4)"/>
+            <path d="M170,160.2 200.9,214.2 139.1,214.2Z" fill="#F5F5F0" opacity="0.81" filter="url(#le5)"/>
+            <path d="M170,168.9 193.4,209.7 146.6,209.7Z" fill="#F5F5F0" opacity="0.88" filter="url(#le6)"/>
+            <path d="M170,175.6 187.6,206.4 152.4,206.4Z" fill="#F5F5F0" opacity="0.95" filter="url(#le7)"/>
+          </g>
+          <circle cx="170" cy="196" r="14" fill="none" stroke="#F5F5F0" stroke-width="2.2"/>
+        </svg>
+        <span class="label">Single color · stamp / engrave</span>
+      </div>
+    </div>
+
+    <div class="spec-row">
+      <div class="spec-block">
+        <h3>Minimum size</h3>
+        <p>24px / 0.35in for the standalone mark. Below this, the eight-layer haze collapses into mud — switch to the single-color version instead of shrinking further.</p>
+        <div class="clearspace-demo">
+          <svg viewBox="0 0 340 320"><defs><filter id="cs0" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="16"/></filter><filter id="cs7" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="2"/></filter><mask id="mcs" maskUnits="userSpaceOnUse" x="0" y="0" width="340" height="320"><rect width="340" height="320" fill="#fff"/><circle cx="170" cy="196" r="14" fill="#000"/></mask></defs>
+            <g mask="url(#mcs)">
+              <path d="M170,50 296,270 44,270Z" fill="#0D1B2A" opacity="0.45" filter="url(#cs0)"/>
+              <path d="M170,175.6 187.6,206.4 152.4,206.4Z" fill="#0D1B2A" opacity="0.95" filter="url(#cs7)"/>
+            </g>
+            <path d="M182.69,190.08A14,14 0 1,1 179,185.28" fill="none" stroke="#0D1B2A" stroke-width="2.2"/>
+            <path d="M179,185.28A14,14 0 0,1 182.69,190.08" fill="none" stroke="#ECCA4F" stroke-width="2.2"/>
+          </svg>
+        </div>
+      </div>
+      <div class="spec-block">
+        <h3>Don't</h3>
+        <p style="margin-bottom:14px;">The haze and the mask are load-bearing. Breaking either breaks the concept.</p>
+        <div class="donts">
+          <div class="dont-card">Recolor the haze off-brand</div>
+          <div class="dont-card">Fill the ring's interior</div>
+          <div class="dont-card">Sharpen every layer equally</div>
+          <div class="dont-card">Drop the gold arc entirely</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============ COLOR ============ -->
+<section class="sect dark" id="color">
+  <div class="wrap">
+    <span class="eyebrow">02 — Color</span>
+    <h2 style="color:var(--field);">Four colors, no more</h2>
+    <p class="lede">Navy carries the weight. Gold is earned, not decorative — it appears only where continuity with Enersoul matters. Cyan has been retired from the system entirely.</p>
+
+    <div class="swatch-grid">
+      <div class="swatch">
+        <div class="swatch-fill" style="background:#0D1B2A;"></div>
+        <div class="swatch-info">
+          <div class="name">Navy</div>
+          <div class="hex">#0D1B2A · RGB 13,27,42</div>
+          <div class="use">Foundation. Backgrounds, the mark's core haze, body text on light pages.</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-fill" style="background:#ECCA4F;"></div>
+        <div class="swatch-info">
+          <div class="name">Enersoul Gold</div>
+          <div class="hex">#ECCA4F · RGB 236,202,79</div>
+          <div class="use">Provenance accent only. The ring arc, and nowhere else without a reason.</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-fill" style="background:#F5F5F0; border-bottom:1px solid var(--line);"></div>
+        <div class="swatch-info">
+          <div class="name">Field</div>
+          <div class="hex">#F5F5F0 · RGB 245,245,240</div>
+          <div class="use">Primary light background and reversed mark color on navy.</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-fill" style="background:#5F6B76;"></div>
+        <div class="swatch-info">
+          <div class="name">Slate</div>
+          <div class="hex">#5F6B76 · RGB 95,107,118</div>
+          <div class="use">Secondary text, captions, and quiet UI on both light and dark.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider rev"></div>
+
+<!-- ============ TYPE ============ -->
+<section class="sect" id="type">
+  <div class="wrap">
+    <span class="eyebrow on-light">03 — Typography</span>
+    <h2>Three roles, one register</h2>
+    <p class="lede">An editorial serif for authority, a geometric sans for everything a reader actually uses, and a mono face for anything that behaves like data.</p>
+
+    <div class="type-role">
+      <div class="role-label">Display — headlines, section titles, the wordmark</div>
+      <div class="role-name">Fraunces</div>
+      <div class="specimen-serif">Beyond the inflection point</div>
+      <div class="specimen-serif italic" style="margin-top:6px; color:var(--slate);">is where the real work begins.</div>
+      <div class="weight-row">
+        <span>Light 300</span><span>Regular 400</span><span>Medium 500</span><span>Semibold 600</span>
+      </div>
+    </div>
+
+    <div class="type-role">
+      <div class="role-label">Body & UI — everything a reader uses</div>
+      <div class="role-name">Space Grotesk</div>
+      <div class="specimen-sans">PMF · GTM · beachheading</div>
+      <div class="weight-row">
+        <span>Regular 400</span><span>Medium 500</span><span>Semibold 600</span><span>Bold 700</span>
+      </div>
+    </div>
+
+    <div class="type-role">
+      <div class="role-label">Utility — data, labels, technical captions</div>
+      <div class="role-name">IBM Plex Mono</div>
+      <div class="specimen-mono">TAM / SAM / SOM &nbsp;·&nbsp; €125–165/hr &nbsp;·&nbsp; Phase 01 / 02</div>
+      <div class="scale-table">
+        <div><span>Eyebrow / label</span><span>11px · 2px tracking</span></div>
+        <div><span>Caption</span><span>12–13px</span></div>
+        <div><span>Body</span><span>15–16px · 1.7 leading</span></div>
+        <div><span>H3</span><span>19–22px</span></div>
+        <div><span>H2</span><span>28–40px</span></div>
+        <div><span>H1 / hero</span><span>42–84px, clamp</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============ GRAPHIC LANGUAGE ============ -->
+<section class="sect dark" id="graphic">
+  <div class="wrap">
+    <span class="eyebrow">04 — Graphic language</span>
+    <h2 style="color:var(--field);">The cascade, beyond the mark</h2>
+    <div class="motif-row">
+      <div>
+        <p>The mark's logic — large and hazy at the edge, small and resolved at the center — is the visual grammar for the rest of the brand, not just the logo.</p>
+        <p><strong style="color:var(--field);">Diagonal dividers</strong> (see the section breaks on this page) stand in for the triangle's own edges cutting through a layout.</p>
+        <p><strong style="color:var(--field);">Density gradients</strong> — content, imagery, or UI elements that get sparser and more focused as the eye moves toward a page's key action — echo the same convergence.</p>
+        <p>Use this language sparingly. It works because it appears once per composition, not on every panel.</p>
+      </div>
+      <div class="cascade-visual">
+        <svg viewBox="0 0 340 320">
+          <defs>
+            <filter id="cv0" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="16"/></filter>
+            <filter id="cv2" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="12"/></filter>
+            <filter id="cv4" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="8"/></filter>
+            <filter id="cv6" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="4"/></filter>
+          </defs>
+          <path d="M170,50 296,270 44,270Z" fill="#ECCA4F" opacity="0.18" filter="url(#cv0)"/>
+          <path d="M170,112.7 241.8,238.2 98.2,238.2Z" fill="#ECCA4F" opacity="0.32" filter="url(#cv2)"/>
+          <path d="M170,148.5 211,220.1 129,220.1Z" fill="#ECCA4F" opacity="0.5" filter="url(#cv4)"/>
+          <path d="M170,168.9 193.4,209.7 146.6,209.7Z" fill="#ECCA4F" opacity="0.75" filter="url(#cv6)"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider rev"></div>
+
+<!-- ============ APPLICATIONS ============ -->
+<section class="sect" id="applications">
+  <div class="wrap">
+    <span class="eyebrow on-light">05 — Applications</span>
+    <h2>In the wild</h2>
+    <p class="lede">Two everyday surfaces. Notice the mark never needs to be large to work — it's built to hold its meaning at 26px just as well as at 220px.</p>
+
+    <div class="app-grid">
+      <div class="letterhead">
+        <div class="lh-top">
+          <div class="lh-mark">
+            <svg viewBox="0 0 340 320"><defs><filter id="lh0" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="16"/></filter><filter id="lh7" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="2"/></filter><mask id="mlh" maskUnits="userSpaceOnUse" x="0" y="0" width="340" height="320"><rect width="340" height="320" fill="#fff"/><circle cx="170" cy="196" r="14" fill="#000"/></mask></defs>
+              <g mask="url(#mlh)">
+                <path d="M170,50 296,270 44,270Z" fill="#0D1B2A" opacity="0.45" filter="url(#lh0)"/>
+                <path d="M170,175.6 187.6,206.4 152.4,206.4Z" fill="#0D1B2A" opacity="0.95" filter="url(#lh7)"/>
+              </g>
+              <path d="M182.69,190.08A14,14 0 1,1 179,185.28" fill="none" stroke="#0D1B2A" stroke-width="2.4"/>
+              <path d="M179,185.28A14,14 0 0,1 182.69,190.08" fill="none" stroke="#ECCA4F" stroke-width="2.4"/>
+            </svg>
+            <span class="name">Beyondelta</span>
+          </div>
+          <div class="lh-contact">RAJKAUSHIK BORGOHAIN<br>KARLSRUHE, DE<br>BEYONDELTA.DE</div>
+        </div>
+        <div class="lh-body">
+          <div class="line"></div><div class="line"></div><div class="line"></div>
+        </div>
+      </div>
+
+      <div class="bizcard-stack">
+        <div class="bizcard">
+          <div class="top">
+            <svg viewBox="0 0 340 320"><defs><filter id="bc0" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="16"/></filter><filter id="bc7" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="2"/></filter><mask id="mbc" maskUnits="userSpaceOnUse" x="0" y="0" width="340" height="320"><rect width="340" height="320" fill="#fff"/><circle cx="170" cy="196" r="14" fill="#000"/></mask></defs>
+              <g mask="url(#mbc)">
+                <path d="M170,50 296,270 44,270Z" fill="#F5F5F0" opacity="0.45" filter="url(#bc0)"/>
+                <path d="M170,175.6 187.6,206.4 152.4,206.4Z" fill="#F5F5F0" opacity="0.95" filter="url(#bc7)"/>
+              </g>
+              <path d="M182.69,190.08A14,14 0 1,1 179,185.28" fill="none" stroke="#F5F5F0" stroke-width="2.4"/>
+              <path d="M179,185.28A14,14 0 0,1 182.69,190.08" fill="none" stroke="#ECCA4F" stroke-width="2.4"/>
+            </svg>
+            <span class="n">Beyondelta</span>
+          </div>
+          <span class="who">RAJKAUSHIK BORGOHAIN · ADVISORY</span>
+        </div>
+        <div class="bizcard" style="background:#fff; color:#0D1B2A;">
+          <div class="top">
+            <svg viewBox="0 0 340 320"><defs><filter id="bd0" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="16"/></filter><filter id="bd7" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="2"/></filter><mask id="mbd" maskUnits="userSpaceOnUse" x="0" y="0" width="340" height="320"><rect width="340" height="320" fill="#fff"/><circle cx="170" cy="196" r="14" fill="#000"/></mask></defs>
+              <g mask="url(#mbd)">
+                <path d="M170,50 296,270 44,270Z" fill="#0D1B2A" opacity="0.45" filter="url(#bd0)"/>
+                <path d="M170,175.6 187.6,206.4 152.4,206.4Z" fill="#0D1B2A" opacity="0.95" filter="url(#bd7)"/>
+              </g>
+              <path d="M182.69,190.08A14,14 0 1,1 179,185.28" fill="none" stroke="#0D1B2A" stroke-width="2.4"/>
+              <path d="M179,185.28A14,14 0 0,1 182.69,190.08" fill="none" stroke="#ECCA4F" stroke-width="2.4"/>
+            </svg>
+            <span class="n">Beyondelta</span>
+          </div>
+          <span class="who" style="color:var(--slate);">BEYONDELTA.DE</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============ VOICE ============ -->
+<section class="sect dark" id="voice">
+  <div class="wrap">
+    <span class="eyebrow">06 — Voice</span>
+    <h2 style="color:var(--field);">How Beyondelta talks</h2>
+    <div class="voice-list">
+      <div class="voice-item">
+        <span class="num">01</span>
+        <h3 style="color:var(--field);">Specific over impressive</h3>
+        <p>Named programs, real cohort sizes, actual hours. Never "market-leading" — say the number instead.</p>
+      </div>
+      <div class="voice-item">
+        <span class="num">02</span>
+        <h3 style="color:var(--field);">Engineering register</h3>
+        <p>The founder is a mechanical engineer, not a marketer playing dress-up. Let precision read as the personality.</p>
+      </div>
+      <div class="voice-item">
+        <span class="num">03</span>
+        <h3 style="color:var(--field);">Restraint is the flex</h3>
+        <p>One accent color, one gold detail, one signature motif. The confidence is in what's left out.</p>
+      </div>
+      <div class="voice-item">
+        <span class="num">04</span>
+        <h3 style="color:var(--field);">Continuity, stated once</h3>
+        <p>Enersoul is acknowledged, not re-explained. A founder's history is provenance, not a pitch point to repeat.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <svg class="fmark" viewBox="0 0 340 320"><defs><filter id="f0" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="16"/></filter><filter id="f7" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="2"/></filter><mask id="mf" maskUnits="userSpaceOnUse" x="0" y="0" width="340" height="320"><rect width="340" height="320" fill="#fff"/><circle cx="170" cy="196" r="14" fill="#000"/></mask></defs>
+    <g mask="url(#mf)">
+      <path d="M170,50 296,270 44,270Z" fill="#F5F5F0" opacity="0.45" filter="url(#f0)"/>
+      <path d="M170,175.6 187.6,206.4 152.4,206.4Z" fill="#F5F5F0" opacity="0.95" filter="url(#f7)"/>
+    </g>
+    <path d="M182.69,190.08A14,14 0 1,1 179,185.28" fill="none" stroke="#F5F5F0" stroke-width="2.4"/>
+    <path d="M179,185.28A14,14 0 0,1 182.69,190.08" fill="none" stroke="#ECCA4F" stroke-width="2.4"/>
+  </svg>
+  BEYONDELTA BRAND KIT · V1 · KARLSRUHE
+</footer>
+
+<style>
+  .cl{ transition:none; }
+  .c0{ animation: fadeblur 0.7s ease-out 0.1s forwards; }
+  .c1{ animation: fadeblur 0.7s ease-out 0.3s forwards; }
+  .c2{ animation: fadeblur 0.7s ease-out 0.5s forwards; }
+  .c3{ animation: fadeblur 0.7s ease-out 0.7s forwards; }
+  .c4{ animation: fadeblur 0.7s ease-out 0.9s forwards; }
+  .c5{ animation: fadeblur 0.7s ease-out 1.1s forwards; }
+  .c6{ animation: fadeblur 0.7s ease-out 1.3s forwards; }
+  .c7{ animation: fadeblur 0.7s ease-out 1.5s forwards; }
+  .ring-a{ animation: fadein 0.6s ease-out 1.75s forwards; }
+  .ring-g{ animation: fadein 0.6s ease-out 1.9s forwards; }
+
+  .c0{ opacity:0; } 
+  @keyframes fadeblur{ from{ opacity:0; } to{ opacity: var(--target,1); } }
+  @keyframes fadein{ from{ opacity:0; } to{ opacity:1; } }
+</style>
+<script>
+  // set correct target opacities per layer (matches static spec elsewhere on page)
+  const targets = [0.45,0.52,0.59,0.66,0.74,0.81,0.88,0.95];
+  document.querySelectorAll('#heroMark .cl').forEach((el,i)=>{
+    el.style.setProperty('--target', targets[i]);
+  });
+</script>
+
+</body>
+</html>
