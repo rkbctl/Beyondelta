@@ -1,8 +1,11 @@
 import { LegalNotice } from "@/components/LegalNotice";
 
 /**
- * SKELETON — required disclosures per § 5 DDG (Digitale-Dienste-Gesetz,
- * successor to § 5 TMG). Structure only — see LegalNotice.
+ * Content sourced from the Impressum-Generator (WebsiteWissen.com), legal
+ * text by Kanzlei Hasselbach — see public/legal/Impressum.html for the
+ * original generator output this was transcribed from. VAT-ID and EU-ODR
+ * sections were in the original placeholder scaffold but aren't covered by
+ * this generator's output — kept as flagged gaps rather than dropped.
  */
 export default function ImpressumPage() {
   return (
@@ -14,48 +17,53 @@ export default function ImpressumPage() {
         <div>
           <h2 className="font-serif text-xl text-offwhite">Angaben gem&auml;&szlig; &sect; 5 DDG</h2>
           <p className="mt-2">
-            [Full legal name of the Freiberufler]
+            Rajkaushik Borgohain
             <br />
-            [Street address]
+            Kriegsstra&szlig;e 38A
             <br />
-            [Postal code, city] — Karlsruhe, Germany
+            76131 Karlsruhe, Germany
           </p>
+        </div>
+
+        <div>
+          <h2 className="font-serif text-xl text-offwhite">Vertreten durch</h2>
+          <p className="mt-2">Rajkaushik Borgohain</p>
         </div>
 
         <div>
           <h2 className="font-serif text-xl text-offwhite">Kontakt</h2>
           <p className="mt-2">
-            Telefon: [phone number]
+            Telefon: +49 152 07024974
             <br />
-            E-Mail: [contact email]
+            E-Mail:{" "}
+            <a href="mailto:rkb@beyondelta.de" className="underline hover:text-gold">
+              rkb@beyondelta.de
+            </a>
           </p>
         </div>
 
         <div>
           <h2 className="font-serif text-xl text-offwhite">Umsatzsteuer-ID</h2>
           <p className="mt-2">
-            [USt-IdNr. if registered for VAT, per &sect; 27a UStG — required since the
-            business plan references net+VAT session pricing]
+            [Not covered by the generator output — confirm whether a USt-IdNr.
+            per &sect; 27a UStG applies and add it here, given the business
+            plan references net+VAT session pricing.]
           </p>
-        </div>
-
-        <div>
-          <h2 className="font-serif text-xl text-offwhite">Verantwortlich f&uuml;r den Inhalt</h2>
-          <p className="mt-2">nach &sect; 18 Abs. 2 MStV: [Name, address as above]</p>
         </div>
 
         <div>
           <h2 className="font-serif text-xl text-offwhite">EU-Streitschlichtung</h2>
           <p className="mt-2">
-            Die Europ&auml;ische Kommission stellt eine Plattform zur
-            Online-Streitbeilegung (OS) bereit:{" "}
+            [Not covered by the generator output. The EU Commission's OS
+            platform link (
             <a
               href="https://ec.europa.eu/consumers/odr/"
               className="underline hover:text-gold"
             >
               https://ec.europa.eu/consumers/odr/
             </a>
-            . [Confirm applicability and whether email should be listed here.]
+            ) is commonly included on commercial sites — confirm applicability
+            before adding it back.]
           </p>
         </div>
 
@@ -64,20 +72,87 @@ export default function ImpressumPage() {
             Verbraucherstreitbeilegung / Universalschlichtungsstelle
           </h2>
           <p className="mt-2">
-            [Standard statement on willingness/unwillingness to participate in
-            dispute resolution before a consumer arbitration board — confirm
-            stance with legal review.]
+            Wir nehmen nicht an Streitbeilegungsverfahren vor einer
+            Verbraucherschlichtungsstelle teil und sind dazu auch nicht
+            verpflichtet.
           </p>
         </div>
 
         <div>
           <h2 className="font-serif text-xl text-offwhite">Haftungsausschluss</h2>
+
+          <h3 className="mt-4 font-medium text-offwhite">Haftung f&uuml;r Inhalte</h3>
           <p className="mt-2">
-            [Standard Haftung f&uuml;r Inhalte / Haftung f&uuml;r Links / Urheberrecht
-            disclaimer language — confirm final wording with legal review rather
-            than using unreviewed boilerplate.]
+            Die Inhalte unserer Seiten wurden mit gr&ouml;&szlig;ter Sorgfalt
+            erstellt. F&uuml;r die Richtigkeit, Vollst&auml;ndigkeit und
+            Aktualit&auml;t der Inhalte k&ouml;nnen wir jedoch keine Gew&auml;hr
+            &uuml;bernehmen. Als Diensteanbieter sind wir gem&auml;&szlig;
+            &sect; 7 Abs. 1 DDG f&uuml;r eigene Inhalte auf diesen Seiten nach
+            den allgemeinen Gesetzen verantwortlich. Nach &sect;&sect; 8 bis 10
+            DDG sind wir als Diensteanbieter jedoch nicht verpflichtet,
+            &uuml;bermittelte oder gespeicherte fremde Informationen zu
+            &uuml;berwachen oder nach Umst&auml;nden zu forschen, die auf eine
+            rechtswidrige T&auml;tigkeit hinweisen. Verpflichtungen zur
+            Entfernung oder Sperrung der Nutzung von Informationen nach den
+            allgemeinen Gesetzen bleiben hiervon unber&uuml;hrt. Eine
+            diesbez&uuml;gliche Haftung ist jedoch erst ab dem Zeitpunkt der
+            Kenntnis einer konkreten Rechtsverletzung m&ouml;glich. Bei
+            Bekanntwerden von entsprechenden Rechtsverletzungen werden wir
+            diese Inhalte umgehend entfernen.
+          </p>
+
+          <h3 className="mt-4 font-medium text-offwhite">Haftung f&uuml;r Links</h3>
+          <p className="mt-2">
+            Unser Angebot enth&auml;lt Links zu externen Webseiten Dritter, auf
+            deren Inhalte wir keinen Einfluss haben. Deshalb k&ouml;nnen wir
+            f&uuml;r diese fremden Inhalte auch keine Gew&auml;hr &uuml;bernehmen.
+            F&uuml;r die Inhalte der verlinkten Seiten ist stets der jeweilige
+            Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten
+            Seiten wurden zum Zeitpunkt der Verlinkung auf m&ouml;gliche
+            Rechtsverst&ouml;&szlig;e &uuml;berpr&uuml;ft. Rechtswidrige Inhalte
+            waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente
+            inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne
+            konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei
+            Bekanntwerden von Rechtsverletzungen werden wir derartige Links
+            umgehend entfernen.
+          </p>
+
+          <h3 className="mt-4 font-medium text-offwhite">Urheberrecht</h3>
+          <p className="mt-2">
+            Die durch die Seitenbetreiber erstellten Inhalte und Werke auf
+            diesen Seiten unterliegen dem deutschen Urheberrecht. Die
+            Vervielf&auml;ltigung, Bearbeitung, Verbreitung und jede Art der
+            Verwertung au&szlig;erhalb der Grenzen des Urheberrechtes
+            bed&uuml;rfen der schriftlichen Zustimmung des jeweiligen Autors
+            bzw. Erstellers. Downloads und Kopien dieser Seite sind nur
+            f&uuml;r den privaten, nicht kommerziellen Gebrauch gestattet.
+            Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt
+            wurden, werden die Urheberrechte Dritter beachtet. Insbesondere
+            werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie
+            trotzdem auf eine Urheberrechtsverletzung aufmerksam werden,
+            bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von
+            Rechtsverletzungen werden wir derartige Inhalte umgehend
+            entfernen.
           </p>
         </div>
+
+        <p className="text-xs text-offwhite/40">
+          Erstellt mit dem{" "}
+          <a
+            href="https://impressum-generator.de"
+            className="underline hover:text-gold"
+          >
+            Impressum-Generator
+          </a>{" "}
+          von WebsiteWissen.com. Rechtstext von der{" "}
+          <a
+            href="https://www.kanzlei-hasselbach.de/"
+            className="underline hover:text-gold"
+          >
+            Kanzlei Hasselbach
+          </a>
+          .
+        </p>
       </div>
     </section>
   );
