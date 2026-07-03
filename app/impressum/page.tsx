@@ -38,31 +38,6 @@ export default function ImpressumPage() {
         </div>
 
         <div>
-          <h2 className="font-serif text-xl text-offwhite">Umsatzsteuer-ID</h2>
-          <p className="mt-2">
-            [Not covered by the generator output — confirm whether a USt-IdNr.
-            per &sect; 27a UStG applies and add it here, given the business
-            plan references net+VAT session pricing.]
-          </p>
-        </div>
-
-        <div>
-          <h2 className="font-serif text-xl text-offwhite">EU-Streitschlichtung</h2>
-          <p className="mt-2">
-            [Not covered by the generator output. The EU Commission's OS
-            platform link (
-            <a
-              href="https://ec.europa.eu/consumers/odr/"
-              className="underline hover:text-gold"
-            >
-              https://ec.europa.eu/consumers/odr/
-            </a>
-            ) is commonly included on commercial sites — confirm applicability
-            before adding it back.]
-          </p>
-        </div>
-
-        <div>
           <h2 className="font-serif text-xl text-offwhite">
             Verbraucherstreitbeilegung / Universalschlichtungsstelle
           </h2>
