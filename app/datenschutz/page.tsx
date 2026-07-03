@@ -693,10 +693,30 @@ export default function DatenschutzPage() {
               .
             </li>
             <li>
-              <strong>Cookies und Tracking:</strong> Diese Website verwendet
-              keine Cookies und keine Analyse-, Tracking- oder
+              <strong>Zoho Calendar (Terminbuchung):</strong> Auf unserer
+              Kontaktseite binden wir das Terminanfrageformular von Zoho
+              Calendar per iframe ein, damit Sie direkt einen
+              Gespr&auml;chstermin anfragen k&ouml;nnen. Beim Laden des
+              Formulars wird eine Verbindung zu den Servern von Zoho
+              hergestellt (EU-Rechenzentrum, zoho.eu); dabei kann Ihre
+              IP-Adresse an Zoho &uuml;bermittelt werden. Bei Absenden des
+              Formulars verarbeiten wir bzw. Zoho in unserem Auftrag Name,
+              E-Mail-Adresse, gew&uuml;nschten Termin und Ihre Nachricht, um
+              die Terminanfrage zu bearbeiten. Dienstanbieter: Zoho
+              Corporation. Rechtsgrundlage: Vertragserf&uuml;llung und
+              vorvertragliche Anfragen (Art. 6 Abs. 1 S. 1 lit. b DSGVO).
+              Datenschutzerkl&auml;rung:{" "}
+              <a href="https://www.zoho.com/privacy.html" className="underline hover:text-gold">
+                zoho.com/privacy.html
+              </a>
+              .
+            </li>
+            <li>
+              <strong>Cookies und Tracking:</strong> Diese Website selbst
+              verwendet keine Cookies und keine Analyse-, Tracking- oder
               Marketing-Tools. Es findet keine Auswertung Ihres
-              Nutzungsverhaltens statt.
+              Nutzungsverhaltens statt &mdash; Ausnahme ist das oben
+              beschriebene Zoho-Terminformular auf der Kontaktseite.
             </li>
             <li>
               <strong>Schriftarten:</strong> Die auf dieser Website verwendeten
