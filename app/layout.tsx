@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, Manrope } from "next/font/google";
+import { Fraunces, Space_Grotesk, IBM_Plex_Mono } from "next/font/google";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import "./globals.css";
@@ -9,8 +9,14 @@ const fraunces = Fraunces({
   subsets: ["latin"],
 });
 
-const manrope = Manrope({
-  variable: "--font-manrope",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
+  subsets: ["latin"],
+});
+
+const plexMono = IBM_Plex_Mono({
+  variable: "--font-plex-mono",
+  weight: ["400", "500"],
   subsets: ["latin"],
 });
 
@@ -19,7 +25,7 @@ export const metadata: Metadata = {
   description:
     "Execution-led PMF validation and go-to-market strategy for early-stage B2B startups, and process automation for Mittelstand — Karlsruhe, Germany.",
   icons: {
-    icon: "/brand/logo.svg",
+    icon: "/brand/logo-stamp.svg",
     apple: "/brand/logo.png",
   },
 };
@@ -32,9 +38,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${manrope.variable} h-full antialiased`}
+      className={`${fraunces.variable} ${spaceGrotesk.variable} ${plexMono.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col bg-black text-offwhite">
+      <body className="flex min-h-full flex-col bg-navy text-offwhite">
         <Nav />
         <main className="flex flex-1 flex-col">{children}</main>
         <Footer />

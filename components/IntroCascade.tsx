@@ -17,8 +17,9 @@ const FLASH_DURATION_MS = 220;
 const ZOOM_TOTAL_MS = Math.max(ZOOM_DURATION_MS, FLASH_DELAY_MS + FLASH_DURATION_MS) + 100;
 
 // Outer -> inner: largest/most-blurred/lowest-opacity to smallest/sharpest.
-// Geometry and blur radii copied from public/brand/logo.svg — same mark,
-// don't redraw it, just sequence its own layers into a reveal.
+// Geometry and blur radii match public/brand/logo-dark.svg (the dark-field
+// variant — field/off-white fill, since this plays on the navy base) —
+// same mark, don't redraw it, just sequence its own layers into a reveal.
 const LAYERS = [
   { d: "M 170.0 50.0 L 296.0 270.0 L 44.0 270.0 Z", opacity: 0.45, blur: 16 },
   { d: "M 170.0 85.8 L 265.1 251.9 L 74.9 251.9 Z", opacity: 0.52, blur: 14 },
@@ -94,7 +95,7 @@ export function IntroCascade() {
   const zooming = phase === "zooming";
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black" onClick={skip}>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-navy" onClick={skip}>
       <div
         className={`relative w-[min(70vw,440px)] ${zooming ? "intro-zoom" : ""}`}
         style={{ transformOrigin: `${RING_CX_PCT}% ${RING_CY_PCT}%` }}
@@ -116,7 +117,7 @@ export function IntroCascade() {
               <path
                 key={i}
                 d={layer.d}
-                fill="var(--color-navy)"
+                fill="var(--color-offwhite)"
                 filter={`url(#introBlur${i})`}
                 className="intro-layer"
                 style={
@@ -132,7 +133,7 @@ export function IntroCascade() {
           <path
             d="M 182.69,190.08 A 14,14 0 1,1 179.00,185.28"
             fill="none"
-            stroke="#000000"
+            stroke="var(--color-offwhite)"
             strokeWidth="2.2"
           />
           <path

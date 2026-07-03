@@ -5,7 +5,7 @@
  */
 export function LegalNotice() {
   return (
-    <div className="mb-12 rounded-xl border border-gold/30 bg-navy p-4 text-sm text-offwhite/80">
+    <div className="mb-12 rounded-xl border border-gold/30 bg-navy-raised p-4 text-sm text-offwhite/80">
       <strong className="text-gold">Not reviewed — do not publish as-is.</strong>{" "}
       This page is a structural placeholder covering the standard fields German
       law typically requires. Bracketed text needs real details, and the whole

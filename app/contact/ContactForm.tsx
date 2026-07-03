@@ -45,7 +45,7 @@ export function ContactForm() {
           name="name"
           type="text"
           required
-          className="mt-1 w-full rounded-lg border border-gold/20 bg-navy px-4 py-3 text-offwhite focus:border-gold focus:outline-none"
+          className="mt-1 w-full rounded-lg border border-gold/20 bg-navy-raised px-4 py-3 text-offwhite focus:border-gold focus:outline-none"
         />
       </div>
 
@@ -58,7 +58,7 @@ export function ContactForm() {
           name="email"
           type="email"
           required
-          className="mt-1 w-full rounded-lg border border-gold/20 bg-navy px-4 py-3 text-offwhite focus:border-gold focus:outline-none"
+          className="mt-1 w-full rounded-lg border border-gold/20 bg-navy-raised px-4 py-3 text-offwhite focus:border-gold focus:outline-none"
         />
       </div>
 
@@ -70,7 +70,7 @@ export function ContactForm() {
           id="company"
           name="company"
           type="text"
-          className="mt-1 w-full rounded-lg border border-gold/20 bg-navy px-4 py-3 text-offwhite focus:border-gold focus:outline-none"
+          className="mt-1 w-full rounded-lg border border-gold/20 bg-navy-raised px-4 py-3 text-offwhite focus:border-gold focus:outline-none"
         />
       </div>
 
@@ -81,7 +81,7 @@ export function ContactForm() {
         <select
           id="heard-about"
           name="heard_about"
-          className="mt-1 w-full rounded-lg border border-gold/20 bg-navy px-4 py-3 text-offwhite focus:border-gold focus:outline-none"
+          className="mt-1 w-full rounded-lg border border-gold/20 bg-navy-raised px-4 py-3 text-offwhite focus:border-gold focus:outline-none"
         >
           {HEARD_ABOUT_OPTIONS.map((option) => (
             <option key={option} value={option}>
@@ -99,7 +99,7 @@ export function ContactForm() {
           id="message"
           name="message"
           rows={4}
-          className="mt-1 w-full rounded-lg border border-gold/20 bg-navy px-4 py-3 text-offwhite focus:border-gold focus:outline-none"
+          className="mt-1 w-full rounded-lg border border-gold/20 bg-navy-raised px-4 py-3 text-offwhite focus:border-gold focus:outline-none"
         />
       </div>
 

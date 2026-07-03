@@ -2,8 +2,8 @@
  * SKELETON — full case study library. Campaign landing pages (/startups,
  * /mittelstand) only ever surface 1-2 curated pieces; this page holds all.
  *
- * Cards use the off-white surface treatment per brand system: black is
- * structural here (border/text) since it has no contrast on navy.
+ * Cards use the off-white ("Field") surface treatment per the brand kit:
+ * navy is body text on light pages, slate is secondary/muted text.
  */
 const PLACEHOLDER_CASES = Array.from({ length: 6 }, (_, i) => i + 1);
 
@@ -19,11 +19,11 @@ export default function PortfolioPage() {
         {PLACEHOLDER_CASES.map((i) => (
           <article
             key={i}
-            className="rounded-2xl border border-black/10 bg-offwhite p-6 text-black"
+            className="rounded-2xl border border-navy/10 bg-offwhite p-6 text-navy"
           >
-            <p className="text-xs uppercase tracking-widest text-black/50">[Category / audience]</p>
+            <p className="font-mono text-xs uppercase tracking-widest text-slate">[Category / audience]</p>
             <h2 className="mt-2 font-serif text-lg">[Case study headline {i}]</h2>
-            <p className="mt-2 text-sm text-black/60">[Summary — problem, approach, result]</p>
+            <p className="mt-2 text-sm text-slate">[Summary — problem, approach, result]</p>
           </article>
         ))}
       </div>
