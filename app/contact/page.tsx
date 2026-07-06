@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { ZohoBooking } from "@/components/ZohoBooking";
+import { CalBooking } from "@/components/CalBooking";
 import { ContactForm } from "./ContactForm";
 
 export default function ContactPage() {
@@ -11,7 +11,7 @@ export default function ContactPage() {
       </p>
 
       <div className="mt-8 flex justify-center">
-        <ZohoBooking />
+        <CalBooking />
       </div>
 
       <div className="mt-16">
