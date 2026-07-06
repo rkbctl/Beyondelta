@@ -76,11 +76,23 @@ export function CalBooking() {
 
     window.Cal.ns[CAL_NAMESPACE]("inline", {
       elementOrSelector: `#${CONTAINER_ID}`,
-      config: { layout: "month_view", useSlotsViewOnSmallScreen: "true" },
+      config: { layout: "month_view", useSlotsViewOnSmallScreen: "true", theme: "dark" },
       calLink: CAL_LINK,
     });
 
-    window.Cal.ns[CAL_NAMESPACE]("ui", { hideEventTypeDetails: false, layout: "month_view" });
+    window.Cal.ns[CAL_NAMESPACE]("ui", {
+      hideEventTypeDetails: false,
+      layout: "month_view",
+      theme: "dark",
+      cssVarsPerTheme: {
+        dark: {
+          "cal-bg": "#13253a",
+          "cal-bg-emphasis": "#0d1b2a",
+          "cal-border-booker": "rgba(236,202,79,0.2)",
+          "cal-text-emphasis": "#f5f5f0",
+        },
+      },
+    });
   }, []);
 
   return (
