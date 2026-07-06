@@ -98,7 +98,7 @@ export function CalBooking() {
   return (
     <div
       id={CONTAINER_ID}
-      className="min-h-[600px] w-full overflow-auto rounded-2xl border border-gold/20 bg-navy-raised p-2"
+      className="h-[500px] w-full overflow-auto rounded-2xl border border-gold/20 bg-navy-raised p-2"
     />
   );
 }
