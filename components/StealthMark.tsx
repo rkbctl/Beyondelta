@@ -73,7 +73,7 @@ export function StealthMark() {
         </div>
       </div>
       <p className="text-center font-mono text-xs uppercase tracking-[0.2em] text-offwhite/50">
-        The full site is still in the works &mdash; but I&apos;m already taking calls.
+        Soon to go beyond
       </p>
     </div>
   );
