@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { Fraunces, Space_Grotesk, IBM_Plex_Mono } from "next/font/google";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
@@ -30,20 +31,23 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const headersList = await headers();
+  const isStealthMode = headersList.get("x-stealth-mode") === "1";
+
   return (
     <html
       lang="en"
       className={`${fraunces.variable} ${spaceGrotesk.variable} ${plexMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-navy text-offwhite">
-        <Nav />
+        {!isStealthMode && <Nav />}
         <main className="flex flex-1 flex-col">{children}</main>
-        <Footer />
+        {!isStealthMode && <Footer />}
       </body>
     </html>
   );

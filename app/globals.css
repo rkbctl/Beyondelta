@@ -44,3 +44,40 @@ h1, h2, h3, .font-serif {
   font-family: var(--font-serif), Georgia, serif;
 }
 
+/* Stealth placeholder mark — one-time cascade in, then a slow ambient
+   pulse on the ring so the page doesn't feel static. See StealthMark.tsx. */
+@keyframes stealth-cascade {
+  from { opacity: 0; }
+  to { opacity: var(--op); }
+}
+.stealth-layer {
+  opacity: 0;
+  animation: stealth-cascade 650ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes stealth-ring-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes stealth-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+.stealth-ring {
+  opacity: 0;
+  animation:
+    stealth-ring-in 600ms ease-out 1.9s forwards,
+    stealth-pulse 4s ease-in-out 2.5s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stealth-layer {
+    animation: none;
+    opacity: var(--op);
+  }
+  .stealth-ring {
+    animation: none;
+    opacity: 1;
+  }
+}
+
