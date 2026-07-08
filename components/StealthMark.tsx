@@ -67,7 +67,12 @@ export function StealthMark() {
           />
         </svg>
       </div>
-      <span className="font-serif text-2xl tracking-tight text-offwhite">Beyond</span>
+      <div className="flex flex-col items-center gap-2">
+        <span className="font-serif text-2xl tracking-tight text-offwhite">Beyond</span>
+        <span className="font-mono text-xs uppercase tracking-[0.2em] text-offwhite/50">
+          Coming soon
+        </span>
+      </div>
     </div>
   );
 }

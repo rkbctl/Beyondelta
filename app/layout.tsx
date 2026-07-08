@@ -47,7 +47,11 @@ export default async function RootLayout({
       <body className="flex min-h-full flex-col bg-navy text-offwhite">
         {!isStealthMode && <Nav />}
         <main className="flex flex-1 flex-col">{children}</main>
-        {!isStealthMode && <Footer />}
+        {/* Footer (Impressum/Datenschutz) stays visible even in stealth
+            mode — German law requires the Impressum reachable from every
+            page. It reveals no positioning/pricing/structure, just legal
+            links, so it's safe to keep up. */}
+        <Footer />
       </body>
     </html>
   );
