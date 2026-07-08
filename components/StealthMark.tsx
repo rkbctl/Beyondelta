@@ -21,58 +21,60 @@ const LAYER_DURATION_MS = 650;
 export function StealthMark() {
   return (
     <div className="flex flex-1 flex-col items-center justify-center gap-8 px-6 py-24">
-      <div className="w-[min(60vw,320px)]">
-        <svg viewBox="0 0 340 320" className="h-auto w-full" aria-hidden>
-          <defs>
-            <mask id="stealthRingCutout" maskUnits="userSpaceOnUse" x="0" y="0" width="340" height="320">
-              <rect x="0" y="0" width="340" height="320" fill="#fff" />
-              <circle cx="170" cy="196" r="14" fill="#000" />
-            </mask>
-            {LAYERS.map((layer, i) => (
-              <filter key={i} id={`stealthBlur${i}`} x="-0.3" y="-0.3" width="1.6" height="1.6">
-                <feGaussianBlur stdDeviation={layer.blur} />
-              </filter>
-            ))}
-          </defs>
-          <g mask="url(#stealthRingCutout)">
-            {LAYERS.map((layer, i) => (
-              <path
-                key={i}
-                d={layer.d}
-                fill="var(--color-offwhite)"
-                filter={`url(#stealthBlur${i})`}
-                className="stealth-layer"
-                style={
-                  {
-                    "--op": layer.opacity,
-                    animationDelay: `${i * LAYER_STAGGER_MS}ms`,
-                  } as React.CSSProperties
-                }
-              />
-            ))}
-          </g>
-          <path
-            d="M 182.69,190.08 A 14,14 0 1,1 179.00,185.28"
-            fill="none"
-            stroke="var(--color-offwhite)"
-            strokeWidth="2.2"
-            className="stealth-ring"
-          />
-          <path
-            d="M 179.00,185.28 A 14,14 0 0,1 182.69,190.08"
-            fill="none"
-            stroke="var(--color-gold)"
-            strokeWidth="2.2"
-            className="stealth-ring"
-          />
-        </svg>
-      </div>
-      <div className="flex flex-col items-center gap-2">
-        <span className="font-serif text-2xl tracking-tight text-offwhite">Beyond</span>
-        <span className="font-mono text-xs uppercase tracking-[0.2em] text-offwhite/50">
-          Coming soon
+      <div className="flex items-center gap-4 sm:gap-6">
+        <span className="font-serif text-6xl tracking-tight text-offwhite sm:text-7xl">
+          Beyond
         </span>
+        <div className="w-[min(28vw,140px)] sm:w-[160px]">
+          <svg viewBox="0 0 340 320" className="h-auto w-full" aria-hidden>
+            <defs>
+              <mask id="stealthRingCutout" maskUnits="userSpaceOnUse" x="0" y="0" width="340" height="320">
+                <rect x="0" y="0" width="340" height="320" fill="#fff" />
+                <circle cx="170" cy="196" r="14" fill="#000" />
+              </mask>
+              {LAYERS.map((layer, i) => (
+                <filter key={i} id={`stealthBlur${i}`} x="-0.3" y="-0.3" width="1.6" height="1.6">
+                  <feGaussianBlur stdDeviation={layer.blur} />
+                </filter>
+              ))}
+            </defs>
+            <g mask="url(#stealthRingCutout)">
+              {LAYERS.map((layer, i) => (
+                <path
+                  key={i}
+                  d={layer.d}
+                  fill="var(--color-offwhite)"
+                  filter={`url(#stealthBlur${i})`}
+                  className="stealth-layer"
+                  style={
+                    {
+                      "--op": layer.opacity,
+                      animationDelay: `${i * LAYER_STAGGER_MS}ms`,
+                    } as React.CSSProperties
+                  }
+                />
+              ))}
+            </g>
+            <path
+              d="M 182.69,190.08 A 14,14 0 1,1 179.00,185.28"
+              fill="none"
+              stroke="var(--color-offwhite)"
+              strokeWidth="2.2"
+              className="stealth-ring"
+            />
+            <path
+              d="M 179.00,185.28 A 14,14 0 0,1 182.69,190.08"
+              fill="none"
+              stroke="var(--color-gold)"
+              strokeWidth="2.2"
+              className="stealth-ring"
+            />
+          </svg>
+        </div>
       </div>
+      <p className="text-center font-mono text-xs uppercase tracking-[0.2em] text-offwhite/50">
+        Going beyond &mdash; unveiling soon
+      </p>
     </div>
   );
 }

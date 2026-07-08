@@ -19,6 +19,12 @@ export default function ComingSoonPage() {
   return (
     <>
       <StealthMark />
+      <div className="mx-auto w-full max-w-md px-6 pb-16 text-center">
+        <span className="font-mono text-xs uppercase tracking-widest text-gold">For startups</span>
+        <p className="mt-3 font-serif text-xl text-offwhite">
+          Going beyond PMF and GTM &mdash; with AI.
+        </p>
+      </div>
       <div className="mx-auto w-full max-w-4xl px-6 pb-24">
         <p className="text-center text-sm text-offwhite/50">
           Want to talk in the meantime? Book a call.
