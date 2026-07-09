@@ -42,3 +42,5 @@ next-env.d.ts
 
 # local claude settings
 .claude/settings.local.json
+n8n_api_key*
+*.n8n_api_key
