@@ -20,7 +20,7 @@ export default function ComingSoonPage() {
     <>
       <StealthMark />
       <div className="mx-auto w-full max-w-2xl px-6 pb-16 text-center">
-        <p className="font-mono text-2xl uppercase tracking-wide text-gold sm:text-3xl">
+        <p className="font-mono text-2xl uppercase tracking-[0.15em] text-gold sm:text-3xl">
           Working out product-market fit (PMF) and go-to-market (GTM) as an
           early-stage startup?
         </p>
