@@ -72,9 +72,6 @@ export function StealthMark() {
           </svg>
         </div>
       </div>
-      <p className="text-center font-mono text-xs uppercase tracking-[0.2em] text-offwhite/50">
-        Soon to go beyond
-      </p>
     </div>
   );
 }
