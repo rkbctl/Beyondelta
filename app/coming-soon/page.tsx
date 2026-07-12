@@ -19,12 +19,12 @@ export default function ComingSoonPage() {
   return (
     <>
       <StealthMark />
-      <div className="mx-auto w-full max-w-2xl px-6 pb-16 text-center">
+      <div className="mx-auto w-full max-w-5xl px-6 pb-16 text-center">
         <p className="font-mono text-2xl uppercase tracking-[0.15em] text-gold sm:text-3xl">
           Working out product-market fit (PMF) and go-to-market (GTM) as an
           early-stage startup?
         </p>
-        <p className="mt-4 font-serif text-xl text-offwhite">
+        <p className="mx-auto mt-4 max-w-2xl font-serif text-xl text-offwhite">
           Going beyond PMF and GTM with Agents and AI on your side.
         </p>
       </div>
