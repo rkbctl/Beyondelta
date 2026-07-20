@@ -1,0 +1,147 @@
+{
+  "name": "Signal Pipeline - Reddit Branch v1",
+  "nodes": [
+    {
+      "id": "673e3803-7e3d-4c2e-b9dd-39f91f0a82b5",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [240, 300],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "days",
+              "daysInterval": 1,
+              "triggerAtHour": 7,
+              "triggerAtMinute": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "fc1c2893-8294-4846-a83a-95bf3162d444",
+      "name": "Build search list",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [460, 300],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const pairs = [\n  { subreddit: \"startups\", query: \"manual process\" },\n  { subreddit: \"startups\", query: \"spreadsheet hell\" },\n  { subreddit: \"SaaS\", query: \"too many tools\" },\n  { subreddit: \"Entrepreneur\", query: \"drowning in ops\" },\n  { subreddit: \"smallbusiness\", query: \"no time to automate\" }\n];\n\nreturn pairs.map((p) => ({ json: p }));"
+      }
+    },
+    {
+      "id": "5e6c186e-a7c0-4e27-bb57-b99320b93466",
+      "name": "Loop Over Items",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [680, 300],
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      }
+    },
+    {
+      "id": "701ac868-7d32-4f85-8fd2-6834d44ad53a",
+      "name": "Fetch Reddit signals",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [920, 200],
+      "parameters": {
+        "method": "GET",
+        "url": "=https://www.reddit.com/r/{{ $json.subreddit }}/search.json?q={{ encodeURIComponent($json.query) }}&sort=new&restrict_sr=1&limit=25",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Agent",
+              "value": "SignalPipeline/1.0 (reddit branch, contact: PMF-GTM consultant)"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "6071f6a4-dcf2-4951-b784-4a9de3992ce2",
+      "name": "Wait 1s",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [1140, 200],
+      "parameters": {
+        "amount": 1,
+        "unit": "seconds"
+      }
+    },
+    {
+      "id": "7579af2c-b1ef-45b1-a3c7-412eec2954ee",
+      "name": "Normalize",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [920, 420],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const output = [];\nconst now = new Date().toISOString();\n\nfor (const item of $input.all()) {\n  const body = item.json;\n  const children = (body.data && body.data.children) || [];\n\n  for (const child of children) {\n    const post = child.data;\n    if (!post) continue;\n\n    output.push({\n      json: {\n        source: \"reddit\",\n        url: `https://www.reddit.com${post.permalink}`,\n        scraped_at: now,\n        signal_date: new Date(post.created_utc * 1000).toISOString(),\n        signal_text: `${post.title}\\n\\n${post.selftext || \"\"}`.trim(),\n        company_name: null,\n        contact_name: post.author,\n        mapped_service: null\n      }\n    });\n  }\n}\n\nreturn output;"
+      }
+    },
+    {
+      "id": "74982b00-4ec4-485e-b8be-1caf84c94ce5",
+      "name": "Score signal",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1.3,
+      "notes": "TODO: no OpenAI/Anthropic credential connected yet. Attach one before activating. Swap node type to n8n-nodes-base.anthropic if Anthropic is preferred.",
+      "position": [1140, 420],
+      "parameters": {
+        "resource": "text",
+        "operation": "message",
+        "modelId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "You are scoring an inbound signal against the Ideal Customer Profile (ICP) of a startup automation / PMF-GTM consultant: early-stage founders and small teams buried in manual, repetitive operational work who would pay for automation or GTM process consulting.\n\nRespond with STRICT JSON only - no markdown, no code fences, no prose outside the JSON object - with exactly these fields:\n- relevance_score: integer 0-100, how well this signal matches the ICP\n- mapped_service: string, the specific service this signal suggests (e.g. \"workflow automation audit\", \"GTM ops buildout\")\n- why_this_counts_as_interest: one sentence explaining why this is a genuine buying signal, not just topical relevance\n- signal_age_days: integer, days between signal_date and now"
+            },
+            {
+              "role": "user",
+              "content": "=signal_date: {{ $json.signal_date }}\nsignal_text:\n{{ $json.signal_text }}"
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "options": {}
+      }
+    }
+  ],
+  "connections": {
+    "Schedule Trigger": {
+      "main": [[{ "node": "Build search list", "type": "main", "index": 0 }]]
+    },
+    "Build search list": {
+      "main": [[{ "node": "Loop Over Items", "type": "main", "index": 0 }]]
+    },
+    "Loop Over Items": {
+      "main": [
+        [{ "node": "Normalize", "type": "main", "index": 0 }],
+        [{ "node": "Fetch Reddit signals", "type": "main", "index": 0 }]
+      ]
+    },
+    "Fetch Reddit signals": {
+      "main": [[{ "node": "Wait 1s", "type": "main", "index": 0 }]]
+    },
+    "Wait 1s": {
+      "main": [[{ "node": "Loop Over Items", "type": "main", "index": 0 }]]
+    },
+    "Normalize": {
+      "main": [[{ "node": "Score signal", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

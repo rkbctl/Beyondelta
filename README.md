@@ -1,10 +1,13 @@
 # Beyondelta
 
-Marketing site for Beyondelta — Next.js, self-hosted via Docker + Caddy.
+This repo has two parts:
+- `bd_website/` — the marketing site (Next.js), self-hosted via Docker + Caddy.
+- `n8n-workflows/` — n8n workflow exports and the REST API wrapper.
 
 ## Development
 
 ```bash
+cd bd_website
 npm run dev
 ```
 
