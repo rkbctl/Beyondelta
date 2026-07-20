@@ -3,13 +3,18 @@ import { NextResponse, type NextRequest } from "next/server";
 const UNLOCK_COOKIE = "beyondelta_unlocked";
 const UNLOCK_PARAM = "key";
 const STEALTH_PATH = "/coming-soon";
+// Always real, gate or no gate — German law requires the Impressum (and
+// by extension the linked Datenschutzerklärung) genuinely reachable from
+// every page, not just linked-then-blocked by the stealth placeholder.
+const ALWAYS_ALLOWED_PATHS = ["/impressum", "/datenschutz"];
 
 /**
  * Gates the entire site behind a secret link while it's not ready for
  * general visibility. Visiting with ?key=<STEALTH_KEY> sets a long-lived
  * cookie and redirects to the clean URL; without a valid key/cookie,
  * every route is rewritten (URL stays the same) to the stealth
- * placeholder, which reveals nothing about site structure or content.
+ * placeholder, which reveals nothing about site structure or content —
+ * except the legal pages, which always render for real (see above).
  */
 export function proxy(request: NextRequest) {
   const { searchParams, pathname } = request.nextUrl;
@@ -38,6 +43,14 @@ export function proxy(request: NextRequest) {
   const hasValidCookie = request.cookies.get(UNLOCK_COOKIE)?.value === secretKey;
   if (hasValidCookie || pathname === STEALTH_PATH) {
     return NextResponse.next();
+  }
+
+  // Real content, but still no Nav — keeps site structure (Startups/
+  // Mittelstand/Portfolio/About links) out of view even here.
+  if (ALWAYS_ALLOWED_PATHS.includes(pathname)) {
+    const headers = new Headers(request.headers);
+    headers.set("x-stealth-mode", "1");
+    return NextResponse.next({ request: { headers } });
   }
 
   const stealthUrl = request.nextUrl.clone();

@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { StealthMark } from "@/components/StealthMark";
 import { CalBooking } from "@/components/CalBooking";
+import { Typewriter } from "@/components/Typewriter";
+
+const AGENT_TASKS = ["Sales", "Cold Calls", "Follow-ups", "Lead Scoring", "Traction"];
 
 export const metadata: Metadata = {
   title: "Beyondelta",
@@ -24,13 +27,14 @@ export default function ComingSoonPage() {
           Working out product-market fit (PMF) and go-to-market (GTM) as an
           early-stage startup?
         </p>
-        <p className="mx-auto mt-4 max-w-2xl font-serif text-xl text-offwhite">
-          Going beyond PMF and GTM with Agents and AI on your side.
+        <p className="mx-auto mt-4 max-w-3xl font-serif text-xl text-offwhite">
+          Let AI with Agents perform <Typewriter words={AGENT_TASKS} /> on your
+          behalf to go beyond PMF and GTM Strategy.
         </p>
       </div>
       <div className="mx-auto w-full max-w-4xl px-6 pb-24">
         <p className="text-center text-sm text-offwhite/50">
-          Book a call.
+          See the Agent live, book a call.
         </p>
         <div className="mt-6">
           <CalBooking />
