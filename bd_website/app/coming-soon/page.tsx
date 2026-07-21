@@ -28,8 +28,9 @@ export default function ComingSoonPage() {
           early-stage startup?
         </p>
         <p className="mx-auto mt-4 max-w-3xl font-serif text-xl text-offwhite">
-          Let AI with Agents perform <Typewriter words={AGENT_TASKS} /> on your
-          behalf to go beyond PMF and GTM Strategy.
+          Let AI with Agents perform{" "}
+          <Typewriter words={AGENT_TASKS} />
+          {" "}on your behalf to go beyond PMF and GTM Strategy.
         </p>
       </div>
       <div className="mx-auto w-full max-w-4xl px-6 pb-24">

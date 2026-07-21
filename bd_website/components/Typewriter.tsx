@@ -5,14 +5,18 @@ import { useEffect, useState } from "react";
 const TYPE_SPEED_MS = 70;
 const DELETE_SPEED_MS = 35;
 const HOLD_MS = 850;
+const EMPTY_PAUSE_MS = 250;
 
-type Phase = "typing" | "holding" | "deleting";
+type Phase = "typing" | "holding" | "deleting" | "empty";
 
 /**
- * Cycles through `words`, typing and backspacing each in turn. Reserves
- * width for the longest word so surrounding text doesn't reflow as it
- * types/deletes. Falls back to a static, slash-joined list for
- * prefers-reduced-motion rather than animating.
+ * Cycles through `words`, typing and backspacing each in turn. No
+ * reserved width — an earlier version used inline-block + min-width
+ * sized to the longest word, which left a variable invisible gap
+ * trailing after short words before the text that follows. Sentence
+ * reflows slightly as words change length; that's the correct
+ * tradeoff over a phantom gap. Falls back to a static, slash-joined
+ * list for prefers-reduced-motion rather than animating.
  */
 export function Typewriter({ words }: { words: string[] }) {
   const [reducedMotion, setReducedMotion] = useState<boolean | null>(null);
@@ -42,27 +46,32 @@ export function Typewriter({ words }: { words: string[] }) {
       return () => clearTimeout(t);
     }
 
-    // deleting
-    if (text.length > 0) {
-      const t = setTimeout(() => setText(text.slice(0, -1)), DELETE_SPEED_MS);
-      return () => clearTimeout(t);
+    if (phase === "deleting") {
+      if (text.length > 0) {
+        const t = setTimeout(() => setText(text.slice(0, -1)), DELETE_SPEED_MS);
+        return () => clearTimeout(t);
+      }
+      // text.length === 0, confirmed — hold here before the next word
+      // starts, rather than typing the next word in the same tick.
+      setPhase("empty");
+      return;
     }
-    setWordIndex((i) => (i + 1) % words.length);
-    setPhase("typing");
-  }, [text, phase, wordIndex, words, reducedMotion]);
 
-  const longest = words.reduce((a, b) => (b.length > a.length ? b : a), "");
+    // phase === "empty": text is guaranteed "" for the entire pause.
+    const t = setTimeout(() => {
+      setWordIndex((i) => (i + 1) % words.length);
+      setPhase("typing");
+    }, EMPTY_PAUSE_MS);
+    return () => clearTimeout(t);
+  }, [text, phase, wordIndex, words, reducedMotion]);
 
   if (reducedMotion) {
     return <span className="text-gold">{words.join(" / ")}</span>;
   }
 
   return (
-    <span
-      className="inline-block text-left text-gold"
-      style={{ minWidth: `${longest.length}ch` }}
-    >
-      {reducedMotion === null ? longest : text}
+    <span className="text-gold">
+      {reducedMotion === null ? "" : text}
       <span className="animate-[blink_1s_step-end_infinite]">|</span>
     </span>
   );
