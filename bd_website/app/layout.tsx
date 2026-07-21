@@ -36,8 +36,15 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Note: this is a SHARED layout, and Next.js reuses its rendered output
+  // across client-side navigations rather than re-checking headers() per
+  // navigation — so this binary check is safe (Nav is consistently shown
+  // or hidden across any locked page), but anything that needs to vary
+  // *between* pages that share this layout (e.g. MinimalHeader only on
+  // /impressum and /datenschutz) has to live in those pages directly,
+  // not here — see their own headers() checks.
   const headersList = await headers();
-  const isStealthMode = headersList.get("x-stealth-mode") === "1";
+  const isStealthMode = Boolean(headersList.get("x-stealth-mode"));
 
   return (
     <html

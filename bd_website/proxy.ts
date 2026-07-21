@@ -41,15 +41,26 @@ export function proxy(request: NextRequest) {
   }
 
   const hasValidCookie = request.cookies.get(UNLOCK_COOKIE)?.value === secretKey;
-  if (hasValidCookie || pathname === STEALTH_PATH) {
+  if (hasValidCookie) {
     return NextResponse.next();
   }
 
-  // Real content, but still no Nav — keeps site structure (Startups/
-  // Mittelstand/Portfolio/About links) out of view even here.
+  // Direct, un-rewritten visit to the placeholder itself — still needs
+  // the "full" signal so layout.tsx doesn't fall through to showing the
+  // real Nav (the default when no x-stealth-mode header is present).
+  if (pathname === STEALTH_PATH) {
+    const headers = new Headers(request.headers);
+    headers.set("x-stealth-mode", "full");
+    return NextResponse.next({ request: { headers } });
+  }
+
+  // Real content, but still no full Nav — keeps site structure (Startups/
+  // Mittelstand/Portfolio/About links) out of view even here. Gets a
+  // minimal logo-only header instead (see layout.tsx), since unlike the
+  // stealth placeholder these pages have no logo of their own.
   if (ALWAYS_ALLOWED_PATHS.includes(pathname)) {
     const headers = new Headers(request.headers);
-    headers.set("x-stealth-mode", "1");
+    headers.set("x-stealth-mode", "minimal-header");
     return NextResponse.next({ request: { headers } });
   }
 
@@ -57,7 +68,7 @@ export function proxy(request: NextRequest) {
   stealthUrl.pathname = STEALTH_PATH;
   stealthUrl.search = "";
   const headers = new Headers(request.headers);
-  headers.set("x-stealth-mode", "1");
+  headers.set("x-stealth-mode", "full");
   return NextResponse.rewrite(stealthUrl, { request: { headers } });
 }
 

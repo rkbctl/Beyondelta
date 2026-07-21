@@ -1,12 +1,25 @@
+import { headers } from "next/headers";
+import { MinimalHeader } from "@/components/MinimalHeader";
+
 /**
  * Content sourced from the Impressum-Generator (WebsiteWissen.com), legal
  * text by Kanzlei Hasselbach — see public/legal/Impressum.html for the
  * original generator output this was transcribed from.
+ *
+ * Checks headers() itself rather than relying on the root layout for
+ * this — pages (unlike shared layouts) fully re-render on every
+ * client-side navigation, so this is the one place that safely reflects
+ * the current request rather than a cached previous one.
  */
-export default function ImpressumPage() {
+export default async function ImpressumPage() {
+  const headersList = await headers();
+  const showMinimalHeader = headersList.get("x-stealth-mode") === "minimal-header";
+
   return (
-    <section className="mx-auto w-full max-w-2xl px-6 py-24">
-      <h1 className="font-serif text-4xl">Impressum</h1>
+    <>
+      {showMinimalHeader && <MinimalHeader />}
+      <section className="mx-auto w-full max-w-2xl px-6 py-24">
+        <h1 className="font-serif text-4xl">Impressum</h1>
 
       <div className="mt-8 space-y-8 text-offwhite/80">
         <div>
@@ -124,6 +137,7 @@ export default function ImpressumPage() {
           .
         </p>
       </div>
-    </section>
+      </section>
+    </>
   );
 }

@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { headers } from "next/headers";
+import { MinimalHeader } from "@/components/MinimalHeader";
 
 /**
  * Full, faithful transcription of the generator output at
@@ -8,11 +10,20 @@ import Link from "next/link";
  * to make unilaterally. Hosting/cookies/fonts sections describe this
  * site's actual real setup (confirmed accurate: Hetzner, no tracking,
  * self-hosted fonts via next/font).
+ *
+ * Checks headers() itself rather than relying on the root layout — see
+ * app/impressum/page.tsx for why (pages re-render per navigation,
+ * shared layouts don't).
  */
-export default function DatenschutzPage() {
+export default async function DatenschutzPage() {
+  const headersList = await headers();
+  const showMinimalHeader = headersList.get("x-stealth-mode") === "minimal-header";
+
   return (
-    <section className="mx-auto w-full max-w-2xl px-6 py-24">
-      <h1 className="font-serif text-4xl">Datenschutzerkl&auml;rung</h1>
+    <>
+      {showMinimalHeader && <MinimalHeader />}
+      <section className="mx-auto w-full max-w-2xl px-6 py-24">
+        <h1 className="font-serif text-4xl">Datenschutzerkl&auml;rung</h1>
 
       <div className="mt-8 space-y-8 text-offwhite/80">
         <div>
@@ -978,7 +989,8 @@ export default function DatenschutzPage() {
           </a>{" "}
           von Dr. Thomas Schwenke.
         </p>
-      </div>
-    </section>
+        </div>
+      </section>
+    </>
   );
 }
