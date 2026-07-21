@@ -27,7 +27,7 @@ export default function ComingSoonPage() {
           Working out product-market fit (PMF) and go-to-market (GTM) as an
           early-stage startup?
         </p>
-        <p className="mx-auto mt-4 max-w-3xl font-serif text-xl text-offwhite">
+        <p className="mx-auto mt-4 min-h-[88px] max-w-3xl font-serif text-xl text-offwhite sm:min-h-[64px]">
           Let AI with Agents perform{" "}
           <Typewriter words={AGENT_TASKS} />
           {" "}on your behalf to go beyond PMF and GTM Strategy.
